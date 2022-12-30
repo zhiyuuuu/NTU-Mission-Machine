@@ -1,0 +1,8 @@
+{
+  "name": "WP_Final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zhiyuuuu/WP_Final.git",
+  "author": "zhiyuuuu <liuzy0815@gmail.com>",
+  "license": "MIT"
+}
