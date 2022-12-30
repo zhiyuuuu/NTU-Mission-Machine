@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "https://github.com/zhiyuuuu/WP_Final.git",
   "author": "zhiyuuuu <liuzy0815@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server"
+  }
 }
