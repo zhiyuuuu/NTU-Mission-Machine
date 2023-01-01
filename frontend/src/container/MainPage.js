@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FileOutlined, UserOutlined } from "@ant-design/icons";
+import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import Title from "../component/Title";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -16,9 +17,11 @@ const items = [
     getItem("我發布的任務", "2"),
     getItem("我接到的任務", "3"),
   ]),
+  getItem("登出", "4", <LogoutOutlined />),
 ];
 const MainPage = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [remainTask, setRemainTask] = useState(0);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -55,23 +58,20 @@ const MainPage = () => {
       <Layout className="site-layout">
         <Header
           style={{
-            padding: 0,
+            // display: "flex",
+            margin: "16px 0",
+            // padding: 20,
             background: colorBgContainer,
+            textAlign: "right",
           }}
-        />
+        >
+          Ongoing task : {remainTask}
+        </Header>
         <Content
           style={{
             margin: "0 16px",
           }}
         >
-          <Breadcrumb
-            style={{
-              margin: "16px 0",
-            }}
-          >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
           <div
             style={{
               padding: 24,
