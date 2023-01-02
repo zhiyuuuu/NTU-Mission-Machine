@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-import Title from "../component/Title";
+import { Layout, Menu, theme } from "antd";
+import Task from "../component/Task";
+import AddPostBox from "../component/AddPostBox";
+import { v4 } from "uuid";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -12,7 +14,7 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("用戶", "1", <UserOutlined />),
+  getItem("首頁", "1", <UserOutlined />),
   getItem("任務", "sub1", <FileOutlined />, [
     getItem("我發布的任務", "2"),
     getItem("我接到的任務", "3"),
@@ -22,9 +24,11 @@ const items = [
 const MainPage = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
+  const [data, setData] = useState([]);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  console.log(data);
   return (
     <Layout
       style={{
@@ -58,9 +62,7 @@ const MainPage = () => {
       <Layout className="site-layout">
         <Header
           style={{
-            // display: "flex",
             margin: "16px 0",
-            // padding: 20,
             background: colorBgContainer,
             textAlign: "right",
           }}
@@ -79,7 +81,23 @@ const MainPage = () => {
               background: colorBgContainer,
             }}
           >
-            Bill is a cat.
+            <AddPostBox setData={setData} />
+            <br />
+            <br />
+            {data.map((task) => {
+              const { id, topic, salary, ddl } = task;
+              return (
+                <Task
+                  key={id}
+                  id={id}
+                  topic={topic}
+                  salary={salary}
+                  due={ddl}
+                />
+              );
+            })}
+            {/* <Task />
+            <Task /> */}
           </div>
         </Content>
         <Footer
