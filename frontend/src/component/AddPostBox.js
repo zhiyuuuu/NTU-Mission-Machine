@@ -8,12 +8,13 @@ import { addPost } from "../api";
 
 const { TextArea } = Input;
 const AddPostBox = ({ setData }) => {
-  function addTask() {
+  const addTask = async() => {
     setData(function (prev) {
       return [...prev, { id: v4(), topic, description, salary, ddl }];
     });
-    addPost({topic, description, salary, ddl});
-    console.log(topic, description, salary, ddl);
+    let response = await addPost({ topic, description, salary, ddl });
+    console.log(response); //message: "success"
+    //console.log(topic, description, salary, ddl);
   }
 
   const [topic, setTopic] = useState("");
