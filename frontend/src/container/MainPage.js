@@ -96,8 +96,6 @@ const MainPage = () => {
                 />
               );
             })}
-            {/* <Task />
-            <Task /> */}
           </div>
         </Content>
         <Footer
