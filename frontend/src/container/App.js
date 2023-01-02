@@ -5,6 +5,7 @@ import MainPage from "./MainPage";
 import EachTask from "./EachTask";
 import MyTasks from "./MyTasks";
 import ChatRoom from "./ChatRoom";
+import MyRequest from "./MyRequest";
 // import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/mytasks" element={<MyTasks />} />
         <Route path="/eachtask" element={<EachTask />} />
         <Route path="/chatroom" element={<ChatRoom />} />
+        <Route path="/myrequest" element={<MyRequest />} />
       </Routes>
     </Router>
   );

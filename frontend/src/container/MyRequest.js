@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import Task from "../component/Task";
-import AddPostBox from "../component/AddPostBox";
 import { useNavigate } from "react-router-dom";
-import MainPageContent from "../component/MainPageContent";
-const { Header, Content, Footer, Sider } = Layout;
+import MyRequestContent from "../component/MyRequestContent";
+const { Header, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -15,46 +13,45 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("首頁", "1", <UserOutlined />),
+  getItem("首頁", "main", <UserOutlined />),
   getItem("任務", "sub1", <FileOutlined />, [
-    getItem("我發布的任務", "2"),
-    getItem("我接到的任務", "3"),
+    getItem("我發布的任務", "request"),
+    getItem("我接到的任務", "task"),
   ]),
-  getItem("登出", "4", <LogoutOutlined />),
+  getItem("登出", "logout", <LogoutOutlined />),
 ];
 console.log(items);
-const MainPage = () => {
+const MyRequest = () => {
   const navigate = useNavigate();
 
   const navigateToSignIn = () => {
     navigate("/");
   };
+  const navigateToMainPage = () => {
+    navigate("/mainpage");
+  };
   const navigateToMyTasks = () => {
     navigate("/mytasks");
   };
-  const navigateToMyRequest = () => {
-    navigate("/myrequest");
-  };
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
-  const [data, setData] = useState([]);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("1");
+  const [selectedMenuItem, setSelectedMenuItem] = useState("request");
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   const componentsSwtich = (key) => {
     switch (key) {
-      case "1":
-        return <MainPageContent />;
-      case "4":
+      case "main":
+        navigateToMainPage();
+        return;
+      case "logout":
         navigateToSignIn();
         return;
-      case "3":
+      case "task":
         navigateToMyTasks();
         return;
-      case "2":
-        navigateToMyRequest();
-        return;
+      case "request":
+        return <MyRequestContent />;
       default:
         break;
     }
@@ -84,7 +81,7 @@ const MainPage = () => {
         </div>
         <Menu
           theme="dark"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["request"]}
           mode="inline"
           items={items}
           onClick={(e) => setSelectedMenuItem(e.key)}
@@ -146,4 +143,4 @@ const MainPage = () => {
     </Layout>
   );
 };
-export default MainPage;
+export default MyRequest;
