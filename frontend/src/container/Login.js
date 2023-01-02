@@ -2,6 +2,8 @@ import Title from "../component/Title";
 import styled from "styled-components";
 import "../css/Login.css";
 import { useNavigate } from "react-router-dom";
+import { handleLogin } from "../api";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,39 +26,57 @@ const Login = () => {
   const navigateToMainPage = () => {
     navigate("/mainpage");
   };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginTest = async() => {
+    let loginResult = await handleLogin({ username, password });
+    //console.log('login result', loginResult);
+    if (loginResult.message === "success") {
+      //console.log('login success!');
+      navigateToMainPage()
+    } else {
+      alert('Username or password is incorrect.')
+      //console.log('Cannot find users.');
+    }
+    setUsername("");
+    setPassword("");
+  }
+
   return (
     <Wrapper>
       <Title />
-      <form>
         <div className="container">
-          <label htmlFor="uname">
+          <label>
             <b>Username</b>
           </label>
           <input
             type="text"
             placeholder="Enter Username"
-            name="uname"
-            required
+            // name="uname"
+            // required
+            onChange={(e) => { setUsername(e.target.value) }}
           />
 
-          <label htmlFor="psw">
+          <label>
             <b>Password</b>
           </label>
           <input
             type="password"
             placeholder="Enter Password"
-            name="psw"
-            required
+            // name="psw"
+            // required
+            onChange={(e) => { setPassword(e.target.value) }}
           />
 
-          <button type="submit" onClick={() => navigateToMainPage()}>
+          <button onClick={loginTest}>
             Login
           </button>
           <button type="submit" onClick={() => navigateToSignUp()}>
             Register?
           </button>
         </div>
-      </form>
     </Wrapper>
   );
 };

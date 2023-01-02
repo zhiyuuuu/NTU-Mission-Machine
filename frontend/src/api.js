@@ -6,15 +6,16 @@ const instance = axios.create({
 
 const addPost = async(data) => {
     return await instance.post('/', { data }).then((res) => {
-        console.log('save data', data);
+        //console.log('save data', data);
         return res.data;
     })
 }
 
-// const handleLogin = async(data) => {
-//     return await instance.post('/login', { data }).then((res) => {
-        
-//     })
-// }
+const handleLogin = async(data) => {
+    return await instance.post('/login', { data }).then((res) => {
+        //console.log('login data', res.data);
+        return res.data;
+    })
+}
 
-export { addPost }
+export { addPost, handleLogin }

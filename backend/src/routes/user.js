@@ -1,17 +1,28 @@
 import User from "../models/users";
 
 exports.LoginByPassword = async(req, res) => {
-    const username = req.body.name;
-    const password = req.body.password;
+    const username = req.body.data.username;
+    const password = req.body.data.password;
 
-    const findUser = await User.find({ name: username, password })
-    
-    findUser.exec((err, data) => {
-        if (err) {
-            res.status(403).send({ message: 'Username or password is incorrect.' })
-        }
-        res.send({ message: 'success', content: data })
-    })
+    console.log('backend received user', req.body.data);
+
+    // await User.find({ name: username, password }, function(err, data) {
+    //     console.log('finding user..', data);
+    //     if (err) {
+    //         throw new Error("user finding error", err)
+    //     }
+    //     res.send({ message: 'success', content: data })
+    //   });
+
+    const findUser = await User.find({ name: username, password });
+    console.log('finding user...', findUser);
+
+    if (findUser.length !== 0) {
+        //console.log('send to frontend');
+        res.send({ message: 'success' })
+    } else {
+        res.send({ message: "failed" })
+    }
 }
 
 exports.SignUp = async(req, res) => {
