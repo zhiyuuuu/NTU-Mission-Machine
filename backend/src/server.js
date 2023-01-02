@@ -24,6 +24,7 @@ const dboptions = {
     useUnifiedTopology: true,
 }
 
+mongoose.set("strictQuery", false);
 mongoose.connect(
     //connect the backend to mongoDB
     process.env.MONGO_URL, dboptions
