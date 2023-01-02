@@ -37,7 +37,7 @@ mongoose.connect(
 })
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
-//routes(app)
+routes(app)
 app.listen(port, () => {
     console.log(`Server is up on port ${port}.`)
 })
