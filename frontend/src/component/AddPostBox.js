@@ -2,14 +2,20 @@ import React from "react";
 import { useState } from "react";
 import { v4 } from "uuid";
 import { Input, Button, DatePicker, Space } from "antd";
+import { addPost } from "../api";
+
+
+
 const { TextArea } = Input;
 const AddPostBox = ({ setData }) => {
   function addTask() {
     setData(function (prev) {
       return [...prev, { id: v4(), topic, description, salary, ddl }];
     });
+    addPost({topic, description, salary, ddl});
     console.log(topic, description, salary, ddl);
   }
+
   const [topic, setTopic] = useState("");
   const [description, setDescription] = useState("");
   const [salary, setSalary] = useState("");

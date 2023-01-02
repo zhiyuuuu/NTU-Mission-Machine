@@ -1,5 +1,21 @@
 import Task from "../models/task";
 
+exports.AddNewTask = async(req, res) => {
+    const body = req.body;
+    console.log('backend received data', body);
+    const { topic, description, salary, ddl } = body.data;
+    const newTask = new Task({ name: topic, detail: description, salary: salary, due: ddl });
+
+    console.log('newTask', newTask);
+
+    try {
+        await newTask.save();
+        res.send({ message: "success" })
+    } catch (error) {
+        throw new Error("saving error" + error);
+    }
+}
+
 exports.GetAllTasks = async(req, res) => {
     const findTask = await Task.find();
 

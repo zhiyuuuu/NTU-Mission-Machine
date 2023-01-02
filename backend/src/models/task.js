@@ -3,12 +3,13 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const TaskSchema = new Schema({
-    name: { type: String, required: [true, 'Name field is required.'] },
-    issuer: { type: String, required: [true, 'Issuer field is required.'] },
+    name: { type: String },
+    issuer: { type: String },
     due: { type: String },
     detail: { type: String },
-    public_status: { type: String},
-    receiver: { type: String }
+    public_status: { type: String },
+    receiver: { type: String },
+    salary: { type: String }
 }, {
     collection: 'Task',
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
