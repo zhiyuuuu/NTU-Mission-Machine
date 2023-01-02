@@ -26,11 +26,13 @@ exports.LoginByPassword = async(req, res) => {
 }
 
 exports.SignUp = async(req, res) => {
-    const body = req.body;
-    const { name, password } = body;
-    let currTask = []
+    const body = req.body.data;
+    const name = body.newName;
+    const password = body.newPswd;
+    //let currTask = []
+    console.log('backend received sign up :', body);
 
-    const setNewUser = new User({ name, password, currTask });
+    const setNewUser = new User({ name, password });
 
     try {
         await setNewUser.save();

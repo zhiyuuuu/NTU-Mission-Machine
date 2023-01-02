@@ -2,6 +2,8 @@ import Title from "../component/Title";
 import styled from "styled-components";
 import "../css/Login.css";
 import { useNavigate } from "react-router-dom";
+import { handleSignUp } from "../api";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,6 +23,20 @@ const Register = () => {
   const navigateToSignIn = () => {
     navigate("/");
   };
+
+  const [newName, setNewName] = useState("");
+  const [newPswd, setNewPswd] = useState("");
+
+  const signUp = async() => {
+    let returnMsg = await handleSignUp({ newName, newPswd });
+    //console.log('return msg: ', returnMsg);
+    if (returnMsg.message === 'success') {
+      navigateToSignIn();
+    } else {
+      alert("Something is wrong :(");
+    }
+  }
+
   return (
     <Wrapper>
       <Title />
@@ -36,6 +52,7 @@ const Register = () => {
           placeholder="Enter Username"
           name="username"
           required
+          onChange={(e) => setNewName(e.target.value)}
         />
 
         <label htmlFor="psw">
@@ -46,6 +63,7 @@ const Register = () => {
           placeholder="Enter Password"
           name="psw"
           required
+          onChange={(e) => setNewPswd(e.target.value)}
         />
 
         <label htmlFor="psw-repeat">
@@ -56,6 +74,12 @@ const Register = () => {
           placeholder="Repeat Password"
           name="psw-repeat"
           required
+          // onChange={(e) => {
+          //   if (e.target.value !== newPswd) {
+          //     console.log('former :', newPswd, 'latter :', e.target.value);
+          //     alert("Error: Please make sure your password matchs.")
+          //   }
+          // }}
         />
 
         <div className="clearfix">
@@ -69,7 +93,7 @@ const Register = () => {
           <button
             type="submit"
             className="signupbtn"
-            onClick={() => navigateToSignIn()}
+            onClick={signUp}
           >
             Sign Up
           </button>

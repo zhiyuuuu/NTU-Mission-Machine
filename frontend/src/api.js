@@ -18,4 +18,11 @@ const handleLogin = async(data) => {
     })
 }
 
-export { addPost, handleLogin }
+const handleSignUp = async(data) => {
+    return await instance.post('/signup', { data }).then((res) => {
+        //console.log('sign up data', res.data);
+        return res.data;
+    })
+}
+
+export { addPost, handleLogin, handleSignUp }
