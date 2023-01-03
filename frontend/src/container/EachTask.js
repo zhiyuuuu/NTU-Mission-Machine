@@ -1,17 +1,30 @@
-import { Card } from "antd";
+import { Card, message } from "antd";
 import { useLocation } from "react-router-dom";
 // import { handleEachTask } from "../api";
 import { Button } from "antd";
 import { handleApply } from "../api";
 
 const EachTask = () => {
-  const popUp = () => {
-    alert("成功應徵!!");
+  const displayStatus = (s) => {
+    if (s.message === "success") {
+      const type = s.message;
+      console.log(type);
+      const content = { content: s.message, duration: 1 };
+      switch (type) {
+        case "success":
+          message.success("成功應徵!!");
+          break;
+        case "error":
+        default:
+          message.error(content);
+          break;
+      }
+    }
   };
   const handleClick = async () => {
     let response = await handleApply({ id, username });
-    popUp();
-    //console.log(response);
+    // console.log(response);
+    displayStatus(response);
   };
 
   const { state } = useLocation();
