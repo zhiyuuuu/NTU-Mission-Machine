@@ -4,7 +4,6 @@ import { Layout, Menu, theme } from "antd";
 import Task from "../component/Task";
 import AddPostBox from "../component/AddPostBox";
 import { useNavigate } from "react-router-dom";
-import MainPageContent from "../component/MainPageContent";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -45,7 +44,38 @@ const MainPage = () => {
   const componentsSwtich = (key) => {
     switch (key) {
       case "1":
-        return <MainPageContent />;
+        // return <MainPageContent />;
+        return (
+          <Content
+            style={{
+              margin: "0 16px",
+            }}
+          >
+            <div
+              style={{
+                padding: 24,
+                minHeight: 360,
+                background: colorBgContainer,
+              }}
+            >
+              <AddPostBox setData={setData} />
+              <br />
+              <br />
+              {data.map((task) => {
+                const { id, topic, salary, ddl } = task;
+                return (
+                  <Task
+                    key={id}
+                    id={id}
+                    topic={topic}
+                    salary={salary}
+                    due={ddl}
+                  />
+                );
+              })}
+            </div>
+          </Content>
+        );
       case "4":
         navigateToSignIn();
         return;
