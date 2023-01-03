@@ -5,8 +5,12 @@ import { Button } from "antd";
 import { handleApply } from "../api";
 
 const EachTask = () => {
+  const popUp = () => {
+    alert("成功應徵!!");
+  };
   const handleClick = async () => {
     let response = await handleApply({ id, username });
+    popUp();
     //console.log(response);
   };
 
