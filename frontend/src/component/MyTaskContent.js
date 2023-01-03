@@ -20,7 +20,7 @@ const MyTaskContent = () => {
           background: colorBgContainer,
         }}
       >
-        MyTassk
+        <Task />
       </div>
     </Content>
   );
