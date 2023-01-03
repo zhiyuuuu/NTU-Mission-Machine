@@ -2,9 +2,9 @@ import Task from "../models/task";
 
 exports.AddNewTask = async(req, res) => {
     const body = req.body;
-    //console.log('backend received data', body);
-    const { topic, description, salary, ddl } = body.data;
-    const newTask = new Task({ name: topic, detail: description, salary: salary, due: ddl });
+    console.log('backend received data', body);
+    const { topic, description, salary, ddl, curUserName } = body.data;
+    const newTask = new Task({ name: topic, detail: description, salary: salary, due: ddl, issuer: curUserName });
 
     //console.log('newTask', newTask);
 

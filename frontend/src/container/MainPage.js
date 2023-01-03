@@ -3,7 +3,7 @@ import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import Task from "../component/Task";
 import AddPostBox from "../component/AddPostBox";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -34,6 +34,10 @@ const MainPage = () => {
   const navigateToMyRequest = () => {
     navigate("/myrequest");
   };
+
+  const { state } = useLocation();
+  const currentUser = state.username;
+
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
   const [data, setData] = useState([]);
@@ -58,7 +62,7 @@ const MainPage = () => {
                 background: colorBgContainer,
               }}
             >
-              <AddPostBox setData={setData} />
+              <AddPostBox setData={setData} curUserName={currentUser}/>
               <br />
               <br />
               {data.map((task) => {

@@ -24,7 +24,11 @@ const Login = () => {
     navigate("/reg");
   };
   const navigateToMainPage = () => {
-    navigate("/mainpage");
+    navigate("/mainpage", {
+      state: {
+        username: username
+      }
+    });
   };
 
   const [username, setUsername] = useState("");
