@@ -39,7 +39,7 @@ const handleMyRequest = async (username) => {
 };
 
 const handleAllTasks = async () => {
-  return await instance.post("/tasks").then((res) => {
+  return await instance.get("/tasks").then((res) => {
     console.log("all task", res.data);
     return res.data;
   });
