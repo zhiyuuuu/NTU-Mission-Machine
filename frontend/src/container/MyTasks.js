@@ -99,38 +99,7 @@ const MyTasks = () => {
           Ongoing task : {remainTask}
         </Header>
 
-        <div>
-          {/* <Content
-            style={{
-              margin: "0 16px",
-            }}
-          >
-            <div
-              style={{
-                padding: 24,
-                minHeight: 360,
-                background: colorBgContainer,
-              }}
-            >
-              <AddPostBox setData={setData} />
-              <br />
-              <br />
-              {data.map((task) => {
-                const { id, topic, salary, ddl } = task;
-                return (
-                  <Task
-                    key={id}
-                    id={id}
-                    topic={topic}
-                    salary={salary}
-                    due={ddl}
-                  />
-                );
-              })}
-            </div>
-          </Content> */}
-          {componentsSwtich(selectedMenuItem)}
-        </div>
+        <div>{componentsSwtich(selectedMenuItem)}</div>
 
         <Footer
           style={{
