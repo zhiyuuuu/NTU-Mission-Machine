@@ -69,7 +69,11 @@ exports.AddReceiverToTask = async(req, res) => {
         if (findTask.receiver !== "none") {
             res.send({ message: "Already been applied :(" })
         } else if (findTask.issuer !== username) {    //not same person
-            let updateTask = await Task.updateOne({ _id: task_id }, { receiver: username, public_status: status }, { new: true });
+            let updateTask = await Task.updateOne(
+                { _id: task_id }, 
+                { receiver: username, public_status: status }, 
+                { new: true }
+            );
             console.log('issuer not same as receiver', updateTask);
             res.send({ message: "success" });
         } else {
