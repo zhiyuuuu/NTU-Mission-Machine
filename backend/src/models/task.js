@@ -8,7 +8,7 @@ const TaskSchema = new Schema({
     due: { type: String },
     detail: { type: String },
     public_status: { type: String },
-    receiver: { type: String },
+    receiver: { type: String, default: "none" },
     salary: { type: String }
 }, {
     collection: 'Task',

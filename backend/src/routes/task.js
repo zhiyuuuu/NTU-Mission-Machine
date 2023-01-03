@@ -22,8 +22,9 @@ exports.GetAllTasks = async(req, res) => {
 
     if (findTask.length !== 0) {
         res.send({ message: "success", content: findTask })
+    } else {
+        res.send({ message: "get task error", content: [] })
     }
-    res.send({ message: "get task error", content: [] })
 }
 
 exports.GetReceivedTasks = async(req, res) => {
@@ -57,12 +58,9 @@ exports.GetPostedTasks = async(req, res) => {
 
 exports.AddReceiverToTask = async(req, res) => {
     
-    console.log('backend received body', req.body);
-    const username = req.body.username;
-    const task_id = req.body.task_id;
-
-    // const addReceiver = await Task.findOneAndUpdate({ _id: task_id }, { receiver: username }, { new: true });
-    // console.log('adding receiver...', addReceiver);
+    //console.log('backend received body', req.body.data);
+    const username = req.body.data.username;
+    const task_id = req.body.data.id;
 
     try {
         await Task.findOneAndUpdate({ _id: task_id }, { receiver: username }, { new: true });
