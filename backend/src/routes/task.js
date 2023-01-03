@@ -27,7 +27,7 @@ exports.GetAllTasks = async(req, res) => {
 }
 
 exports.GetReceivedTasks = async(req, res) => {
-    const username = req.body.data.username;
+    const username = req.body.username;
     console.log('backend received username', username);
 
     const findReceivedTask = await Task.find({ receiver: username });
@@ -59,7 +59,7 @@ exports.AddReceiverToTask = async(req, res) => {
     
     console.log('backend received body', req.body);
     const username = req.body.username;
-    const task_id = req.body.id;
+    const task_id = req.body.task_id;
 
     // const addReceiver = await Task.findOneAndUpdate({ _id: task_id }, { receiver: username }, { new: true });
     // console.log('adding receiver...', addReceiver);
