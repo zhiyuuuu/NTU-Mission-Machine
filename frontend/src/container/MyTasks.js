@@ -60,7 +60,7 @@ const MyTasks = () => {
         navigateToMainPage();
         return;
       case "3":
-        return <MyTaskContent tasks={tasks} />;
+        return <MyTaskContent tasks={tasks} username={username} />;
       case "4":
         navigateToSignIn();
         return;

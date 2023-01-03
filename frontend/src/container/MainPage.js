@@ -91,6 +91,7 @@ const MainPage = () => {
                     topic={task.name}
                     salary={task.salary}
                     due={task.due}
+                    public_status={task.public_status}
                     curUserName={currentUser}
                   />
                 );

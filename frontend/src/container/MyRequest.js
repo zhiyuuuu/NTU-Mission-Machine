@@ -64,7 +64,7 @@ const MyRequest = () => {
         navigateToMyTasks();
         return;
       case "request":
-        return <MyRequestContent tasks={tasks} />;
+        return <MyRequestContent tasks={tasks} username={username} />;
       default:
         break;
     }

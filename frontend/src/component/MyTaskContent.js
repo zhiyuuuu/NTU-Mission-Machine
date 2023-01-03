@@ -3,7 +3,7 @@ import { Layout, theme } from "antd";
 import Task from "./Task";
 const { Content } = Layout;
 
-const MyTaskContent = ({ tasks }) => {
+const MyTaskContent = ({ tasks, username }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -29,6 +29,8 @@ const MyTaskContent = ({ tasks }) => {
               description={task.detail}
               salary={task.salary}
               due={task.due}
+              public_status={task.public_status}
+              curUserName={username}
             />
           );
         })}
