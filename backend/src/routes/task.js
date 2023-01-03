@@ -74,7 +74,7 @@ exports.AddReceiverToTask = async(req, res) => {
                 { receiver: username, public_status: status }, 
                 { new: true }
             );
-            console.log('issuer not same as receiver', updateTask);
+            console.log('issuer not same as receiver');
             res.send({ message: "success" });
         } else {
             res.send({ message: "issuer cannot be same as receiver!" })
