@@ -1,8 +1,17 @@
 import { Card } from "antd";
+import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Task = ({ id, topic, description, salary, due, curUserName }) => {
+const Task = ({
+  id,
+  topic,
+  description,
+  salary,
+  due,
+  public_status,
+  curUserName,
+}) => {
   const navigate = useNavigate();
 
   const navigateToTask = (id) => {
@@ -13,6 +22,7 @@ const Task = ({ id, topic, description, salary, due, curUserName }) => {
         topic: topic,
         salary: salary,
         due: due,
+        public_status: public_status,
         curUserName: curUserName,
       },
     });
@@ -30,6 +40,7 @@ const Task = ({ id, topic, description, salary, due, curUserName }) => {
         <p>{salary}</p>
         <h3>在甚麼時候前完成?</h3>
         <p>{due}</p>
+        {public_status ? <StopOutlined /> : <CheckCircleOutlined />}
       </Card>
     </div>
   );
