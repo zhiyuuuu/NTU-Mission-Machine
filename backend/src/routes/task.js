@@ -55,15 +55,15 @@ exports.GetPostedTasks = async(req, res) => {
     }
 }
 
-exports.GetDetailOfTask = async(req, res) => {
-    const task_id = req.body.id;
+// exports.GetDetailOfTask = async(req, res) => {
+//     const task_id = req.body.id;
 
-    const getDetail = await Task.findById(task_id);
-    console.log('finding task with id...', getDetail);
+//     const getDetail = await Task.findById(task_id);
+//     console.log('finding task with id...', getDetail);
 
-    if (getDetail.length !== 0) {
-        res.send({ message: 'Get content of task.', content: getDetail })
-    }
-    res.send({ message: 'Get detail failed', content: [] })
-}
+//     if (getDetail.length !== 0) {
+//         res.send({ message: 'Get content of task.', content: getDetail })
+//     }
+//     res.send({ message: 'Get detail failed', content: [] })
+// }
 
