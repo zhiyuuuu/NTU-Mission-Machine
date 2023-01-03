@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import MyTaskContent from "../component/MyTaskContent";
 import { handleMyTask } from "../api";
 const { Header, Footer, Sider } = Layout;
@@ -34,6 +34,10 @@ const MyTasks = () => {
   const navigateToMainPage = () => {
     navigate("/mainpage");
   };
+
+  const { state } = useLocation();
+  const username = state.username;
+
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
   const [selectedMenuItem, setSelectedMenuItem] = useState("3");
@@ -44,9 +48,9 @@ const MyTasks = () => {
 
   useEffect(() => {
     const asyncfunction = async () => {
-      const data = await handleMyTask();
-      //console.log("data", data);
-      setTasks(data);
+      const data = await handleMyTask(username);
+      console.log("my task data", data);
+      setTasks(data.content);
     };
     asyncfunction();
   }, []);

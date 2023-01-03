@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import Task from "../component/Task";
 import AddPostBox from "../component/AddPostBox";
 import { useLocation, useNavigate } from "react-router-dom";
+import { handleAllTasks } from "../api";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -29,13 +30,17 @@ const MainPage = () => {
     navigate("/");
   };
   const navigateToMyTasks = () => {
-    navigate("/mytasks");
+    navigate("/mytasks", {
+      state: {
+        username: currentUser,
+      },
+    });
   };
   const navigateToMyRequest = () => {
     navigate("/myrequest", {
       state: {
-        username: currentUser
-      }
+        username: currentUser,
+      },
     });
   };
 
@@ -44,11 +49,20 @@ const MainPage = () => {
 
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); //for add
+  const [allTasks, setAllTasks] = useState([]); //for add
   const [selectedMenuItem, setSelectedMenuItem] = useState("1");
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  useEffect(() => {
+    const asyncfunction = async () => {
+      const data = await handleAllTasks();
+      console.log("all data", data);
+      setAllTasks(data.content);
+    };
+    asyncfunction();
+  }, []);
   const componentsSwtich = (key) => {
     switch (key) {
       case "1":
@@ -66,18 +80,17 @@ const MainPage = () => {
                 background: colorBgContainer,
               }}
             >
-              <AddPostBox setData={setData} curUserName={currentUser}/>
+              <AddPostBox setData={setData} curUserName={currentUser} />
               <br />
               <br />
-              {data.map((task) => {
-                const { id, topic, salary, ddl } = task;
+              {allTasks.map((task) => {
                 return (
                   <Task
-                    key={id}
-                    id={id}
-                    topic={topic}
-                    salary={salary}
-                    due={ddl}
+                    key={task._id}
+                    id={task._id}
+                    topic={task.name}
+                    salary={task.salary}
+                    due={task.due}
                   />
                 );
               })}

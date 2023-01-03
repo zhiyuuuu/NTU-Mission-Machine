@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, theme } from "antd";
 import Task from "./Task";
 const { Content } = Layout;
@@ -21,9 +21,14 @@ const MyRequestContent = ({ tasks }) => {
         }}
       >
         {tasks.map((task) => {
-          //const { id, topic, salary, ddl } = task;
           return (
-            <Task key={ task._id } id={ task._id } topic={ task.name } salary={ task.salary } due={ task.due } />
+            <Task
+              key={task._id}
+              id={task._id}
+              topic={task.name}
+              salary={task.salary}
+              due={task.due}
+            />
           );
         })}
       </div>

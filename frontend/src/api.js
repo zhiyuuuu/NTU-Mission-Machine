@@ -33,9 +33,23 @@ const handleMyTask = async (username) => {
 
 const handleMyRequest = async (username) => {
   return await instance.post("/myrequests", { username }).then((res) => {
-    console.log('response', res.data);
+    console.log("response", res.data);
     return res.data;
   });
 };
 
-export { addPost, handleLogin, handleSignUp, handleMyTask, handleMyRequest };
+const handleAllTasks = async () => {
+  return await instance.post("/tasks").then((res) => {
+    console.log("all task", res.data);
+    return res.data;
+  });
+};
+
+export {
+  addPost,
+  handleLogin,
+  handleSignUp,
+  handleMyTask,
+  handleMyRequest,
+  handleAllTasks,
+};
