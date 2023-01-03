@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 import MyRequestContent from "../component/MyRequestContent";
+import { handleMyRequest } from "../api";
 const { Header, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -36,9 +37,18 @@ const MyRequest = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
   const [selectedMenuItem, setSelectedMenuItem] = useState("request");
+  const [tasks, setTasks] = useState([]);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  useEffect(() => {
+    const asyncfunction = async () => {
+      const data = await handleMyRequest();
+      //console.log("data", data);
+      setTasks(data);
+    };
+    asyncfunction();
+  }, []);
   const componentsSwtich = (key) => {
     switch (key) {
       case "main":
@@ -51,7 +61,7 @@ const MyRequest = () => {
         navigateToMyTasks();
         return;
       case "request":
-        return <MyRequestContent />;
+        return <MyRequestContent tasks={tasks} />;
       default:
         break;
     }

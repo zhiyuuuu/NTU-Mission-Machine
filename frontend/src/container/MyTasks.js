@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 import MyTaskContent from "../component/MyTaskContent";
+import { handleMyTask } from "../api";
 const { Header, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -35,18 +36,28 @@ const MyTasks = () => {
   };
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
-  //   const [data, setData] = useState([]);
   const [selectedMenuItem, setSelectedMenuItem] = useState("3");
+  const [tasks, setTasks] = useState([]);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  useEffect(() => {
+    const asyncfunction = async () => {
+      const data = await handleMyTask();
+      //console.log("data", data);
+      setTasks(data);
+    };
+    asyncfunction();
+  }, []);
+
   const componentsSwtich = (key) => {
     switch (key) {
       case "1":
         navigateToMainPage();
         return;
       case "3":
-        return <MyTaskContent />;
+        return <MyTaskContent tasks={tasks} />;
       case "4":
         navigateToSignIn();
         return;

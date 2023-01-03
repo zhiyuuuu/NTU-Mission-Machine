@@ -3,7 +3,7 @@ import { Layout, theme } from "antd";
 import Task from "./Task";
 const { Content } = Layout;
 
-const MyTaskContent = () => {
+const MyTaskContent = ({ tasks }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -20,7 +20,12 @@ const MyTaskContent = () => {
           background: colorBgContainer,
         }}
       >
-        <Task />
+        {tasks.map((task) => {
+          const { id, topic, salary, ddl } = task;
+          return (
+            <Task key={id} id={id} topic={topic} salary={salary} due={ddl} />
+          );
+        })}
       </div>
     </Content>
   );

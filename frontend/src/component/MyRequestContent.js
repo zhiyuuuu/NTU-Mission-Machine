@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Layout, theme } from "antd";
+import Task from "./Task";
 const { Content } = Layout;
 
-const MyRequestContent = () => {
+const MyRequestContent = ({ tasks }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -19,7 +20,12 @@ const MyRequestContent = () => {
           background: colorBgContainer,
         }}
       >
-        HelloRequeest
+        {tasks.map((task) => {
+          const { id, topic, salary, ddl } = task;
+          return (
+            <Task key={id} id={id} topic={topic} salary={salary} due={ddl} />
+          );
+        })}
       </div>
     </Content>
   );
