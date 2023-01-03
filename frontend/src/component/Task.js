@@ -1,4 +1,5 @@
 import { Card } from "antd";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Task = ({ id, topic, description, salary, due, curUserName }) => {
