@@ -8,7 +8,7 @@ function main( app ) {
     app.post( '/signup', wrap( userRoute.SignUp ) )
     app.post( '/', wrap( taskRoute.AddNewTask ) )
     app.get( '/tasks', wrap( taskRoute.GetAllTasks ) )
-    app.post( '/tasks/content/<task_id>', wrap( taskRoute.GetDetailOfTasks ) )
+    app.post( '/tasks/content/', wrap( taskRoute.GetDetailOfTasks ) )
     app.post( '/mytasks', wrap( taskRoute.GetReceivedTasks ) )
     app.post( '/myrequests', wrap( taskRoute.GetPostedTasks ) )
 }

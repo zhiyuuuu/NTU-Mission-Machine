@@ -33,17 +33,24 @@ const handleMyTask = async (username) => {
 
 const handleMyRequest = async (username) => {
   return await instance.post("/myrequests", { username }).then((res) => {
-    console.log("response", res.data);
+    //console.log("response", res.data);
     return res.data;
   });
 };
 
 const handleAllTasks = async () => {
   return await instance.get("/tasks").then((res) => {
-    console.log("all task", res.data);
+    //console.log("all task", res.data);
     return res.data;
   });
 };
+
+const handleEachTask = async(task_id) => {
+    return await instance.post('/tasks/content', { task_id }).then((res) => {
+        console.log('each task response', res.data);
+        return res.data;
+    })
+}
 
 export {
   addPost,
@@ -52,4 +59,5 @@ export {
   handleMyTask,
   handleMyRequest,
   handleAllTasks,
+  handleEachTask
 };
