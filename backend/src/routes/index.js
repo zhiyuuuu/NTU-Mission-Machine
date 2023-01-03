@@ -9,6 +9,7 @@ function main( app ) {
     app.post( '/', wrap( taskRoute.AddNewTask ) )
     app.get( '/tasks', wrap( taskRoute.GetAllTasks ) )
     //app.post( '/tasks/content/', wrap( taskRoute.GetDetailOfTasks ) )
+    app.post( '/apply', wrap( taskRoute.AddReceiverToTask ) )
     app.post( '/mytasks', wrap( taskRoute.GetReceivedTasks ) )
     app.post( '/myrequests', wrap( taskRoute.GetPostedTasks ) )
 }

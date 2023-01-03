@@ -55,6 +55,24 @@ exports.GetPostedTasks = async(req, res) => {
     }
 }
 
+exports.AddReceiverToTask = async(req, res) => {
+    
+    console.log('backend received body', req.body);
+    const username = req.body.username;
+    const task_id = req.body.id;
+
+    // const addReceiver = await Task.findOneAndUpdate({ _id: task_id }, { receiver: username }, { new: true });
+    // console.log('adding receiver...', addReceiver);
+
+    try {
+        await Task.findOneAndUpdate({ _id: task_id }, { receiver: username }, { new: true });
+        res.send({ message: "success" });
+    } catch (error) {
+        res.send({ message: "error" });
+        throw new Error('updating error' + error);
+    }
+}
+
 // exports.GetDetailOfTask = async(req, res) => {
 //     const task_id = req.body.id;
 
