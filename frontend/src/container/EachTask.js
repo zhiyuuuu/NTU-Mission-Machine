@@ -20,6 +20,14 @@ const EachTask = () => {
   const username = state.curUserName;
   return (
     <div>
+      <h1
+        style={{
+          textAlign: "center",
+          color: "green",
+        }}
+      >
+        NTU Mission Machine
+      </h1>
       <Card
         title={topic}
         bordered={false}
