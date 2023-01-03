@@ -21,7 +21,6 @@ const items = [
   ]),
   getItem("登出", "4", <LogoutOutlined />),
 ];
-console.log(items);
 const MyTasks = () => {
   const navigate = useNavigate();
 

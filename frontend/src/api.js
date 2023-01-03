@@ -45,12 +45,18 @@ const handleAllTasks = async () => {
   });
 };
 
-const handleEachTask = async(task_id) => {
-    return await instance.post('/tasks/content', { task_id }).then((res) => {
-        console.log('each task response', res.data);
-        return res.data;
-    })
-}
+const handleEachTask = async (task_id) => {
+  return await instance.post("/tasks/content", { task_id }).then((res) => {
+    // console.log('each task response', res.data);
+    return res.data;
+  });
+};
+
+const handleApply = async ({ task_id, username }) => {
+  return await instance.get("/apply").then((res) => {
+    return res.data;
+  });
+};
 
 export {
   addPost,
@@ -59,5 +65,6 @@ export {
   handleMyTask,
   handleMyRequest,
   handleAllTasks,
-  handleEachTask
+  handleEachTask,
+  handleApply,
 };

@@ -1,9 +1,23 @@
 import { Card } from "antd";
+import { useNavigate } from "react-router-dom";
 
-const Task = ({ id, topic, salary, due }) => {
-  console.log(due);
+const Task = ({ id, topic, description, salary, due, curUserName }) => {
+  const navigate = useNavigate();
+
+  const navigateToTask = (id) => {
+    navigate(`/eachtask/:${id}`, {
+      state: {
+        id: id,
+        description: description,
+        topic: topic,
+        salary: salary,
+        due: due,
+        curUserName: curUserName,
+      },
+    });
+  };
   return (
-    <div>
+    <div onClick={() => navigateToTask(id)}>
       <Card
         title={topic}
         bordered={false}

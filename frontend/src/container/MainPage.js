@@ -22,7 +22,6 @@ const items = [
   ]),
   getItem("登出", "4", <LogoutOutlined />),
 ];
-console.log(items);
 const MainPage = () => {
   const navigate = useNavigate();
 
@@ -87,6 +86,7 @@ const MainPage = () => {
                 return (
                   <Task
                     key={task._id}
+                    description={task.detail}
                     id={task._id}
                     topic={task.name}
                     salary={task.salary}

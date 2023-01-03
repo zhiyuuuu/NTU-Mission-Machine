@@ -16,7 +16,7 @@ function App() {
         <Route path="/reg" element={<Register />} />
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/mytasks" element={<MyTasks />} />
-        <Route path="/eachtask" element={<EachTask />} />
+        <Route path="/eachtask/:id" element={<EachTask />} />
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/myrequest" element={<MyRequest />} />
       </Routes>

@@ -26,6 +26,7 @@ const MyRequestContent = ({ tasks }) => {
               key={task._id}
               id={task._id}
               topic={task.name}
+              description={task.detail}
               salary={task.salary}
               due={task.due}
             />

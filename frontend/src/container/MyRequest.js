@@ -21,7 +21,6 @@ const items = [
   ]),
   getItem("登出", "logout", <LogoutOutlined />),
 ];
-console.log(items);
 const MyRequest = () => {
   const navigate = useNavigate();
 

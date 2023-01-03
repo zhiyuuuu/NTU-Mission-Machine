@@ -4,19 +4,25 @@ import { v4 } from "uuid";
 import { Input, Button, DatePicker, Space } from "antd";
 import { addPost } from "../api";
 
-
-
 const { TextArea } = Input;
 const AddPostBox = ({ setData, curUserName }) => {
-
-  const addTask = async() => {
+  const addTask = async () => {
     setData(function (prev) {
-      return [...prev, { id: v4(), topic, description, salary, ddl }];
+      return [
+        ...prev,
+        { id: v4(), topic, description, salary, ddl, curUserName },
+      ];
     });
-    let response = await addPost({ topic, description, salary, ddl, curUserName });
+    let response = await addPost({
+      topic,
+      description,
+      salary,
+      ddl,
+      curUserName,
+    });
     console.log(response); //message: "success"
     //console.log(topic, description, salary, ddl);
-  }
+  };
 
   const [topic, setTopic] = useState("");
   const [description, setDescription] = useState("");
