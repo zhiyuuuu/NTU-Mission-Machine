@@ -26,27 +26,15 @@ const handleSignUp = async (data) => {
 };
 
 const handleMyTask = async (username) => {
-  try {
-    // 給username，回傳他的所有 tasks
-    const {
-      data: { tasks },
-    } = await instance.get("/mytask", { params: { username } });
-    return tasks;
-  } catch (error) {
-    throw new Error(username + "has something wrong");
-  }
+  return await instance.post("/mytasks", { username }).then((res) => {
+    return res.data;
+  });
 };
 
 const handleMyRequest = async (username) => {
-  try {
-    // 給username，回傳他的所有 requests
-    const {
-      data: { tasks },
-    } = await instance.get("/myrequest", { params: { username } });
-    return tasks;
-  } catch (error) {
-    throw new Error(username + "has something wrong");
-  }
+  return await instance.post("/myrequests", { username }).then((res) => {
+    return res.data;
+  });
 };
 
 export { addPost, handleLogin, handleSignUp, handleMyTask, handleMyRequest };
