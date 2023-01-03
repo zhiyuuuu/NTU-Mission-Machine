@@ -18,6 +18,7 @@ exports.AddNewTask = async(req, res) => {
 
 exports.GetAllTasks = async(req, res) => {
     const findTask = await Task.find();
+    console.log('data get from db...', findTask);
 
     findTask.exec((err, data) => {
         if (err) {
@@ -27,17 +28,33 @@ exports.GetAllTasks = async(req, res) => {
     })
 }
 
-exports.GetMyTasks = async(req, res) => {
-    const user_name = req.body.name;
+exports.GetReceivedTasks = async(req, res) => {
+    const username = req.body.data.username;
+    console.log('backend received username', username);
 
-    const findMyTask = await Task.find({ issuer: user_name });
+    const findReceivedTask = await Task.find({ receiver: username });
+    console.log('finding user received tasks...', findReceivedTask);
 
-    findMyTask.exec((err, data) => {
-        if (err) {
-            res.status(403).send({ message: "error", content: [] })
-        }
-        res.send({ message: "success", content: data });
-    })
+    if (findReceivedTask.length !== 0) {
+        res.send({ message: 'Found received task.', content: findReceivedTask })
+    } else {
+        res.send({ message: 'Received tasks not found.', content: [] })
+    }
+}
+
+exports.GetPostedTasks = async(req, res) => {
+    //console.log('received', req.body);
+    const username = req.body.username;
+    console.log('backend received username', username);
+
+    const findPostedTask = await Task.find({ issuer: username });
+    console.log('finding user posted tasks...', findPostedTask);
+
+    if (findPostedTask.length !== 0) {
+        res.send({ message: 'Found posted task.', content: findPostedTask })
+    } else {
+        res.send({ message: 'Posted tasks not found.', content: [] })
+    }
 }
 
 exports.GetDetailOfTask = async(req, res) => {

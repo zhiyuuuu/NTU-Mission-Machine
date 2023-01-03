@@ -32,7 +32,11 @@ const MainPage = () => {
     navigate("/mytasks");
   };
   const navigateToMyRequest = () => {
-    navigate("/myrequest");
+    navigate("/myrequest", {
+      state: {
+        username: currentUser
+      }
+    });
   };
 
   const { state } = useLocation();

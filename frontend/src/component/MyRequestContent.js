@@ -21,9 +21,9 @@ const MyRequestContent = ({ tasks }) => {
         }}
       >
         {tasks.map((task) => {
-          const { id, topic, salary, ddl } = task;
+          //const { id, topic, salary, ddl } = task;
           return (
-            <Task key={id} id={id} topic={topic} salary={salary} due={ddl} />
+            <Task key={ task._id } id={ task._id } topic={ task.name } salary={ task.salary } due={ task.due } />
           );
         })}
       </div>

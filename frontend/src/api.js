@@ -33,6 +33,7 @@ const handleMyTask = async (username) => {
 
 const handleMyRequest = async (username) => {
   return await instance.post("/myrequests", { username }).then((res) => {
+    console.log('response', res.data);
     return res.data;
   });
 };

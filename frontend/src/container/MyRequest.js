@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MyRequestContent from "../component/MyRequestContent";
 import { handleMyRequest } from "../api";
 const { Header, Footer, Sider } = Layout;
@@ -34,6 +34,10 @@ const MyRequest = () => {
   const navigateToMyTasks = () => {
     navigate("/mytasks");
   };
+
+  const { state } = useLocation();
+  const username = state.username;
+
   const [collapsed, setCollapsed] = useState(false);
   const [remainTask, setRemainTask] = useState(0);
   const [selectedMenuItem, setSelectedMenuItem] = useState("request");
@@ -43,9 +47,9 @@ const MyRequest = () => {
   } = theme.useToken();
   useEffect(() => {
     const asyncfunction = async () => {
-      const data = await handleMyRequest();
-      //console.log("data", data);
-      setTasks(data);
+      const data = await handleMyRequest(username);
+      console.log("my request data", data);
+      setTasks(data.content);
     };
     asyncfunction();
   }, []);

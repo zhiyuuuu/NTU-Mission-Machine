@@ -6,14 +6,6 @@ exports.LoginByPassword = async(req, res) => {
 
     console.log('backend received user', req.body.data);
 
-    // await User.find({ name: username, password }, function(err, data) {
-    //     console.log('finding user..', data);
-    //     if (err) {
-    //         throw new Error("user finding error", err)
-    //     }
-    //     res.send({ message: 'success', content: data })
-    //   });
-
     const findUser = await User.find({ name: username, password });
     console.log('finding user...', findUser);
 
