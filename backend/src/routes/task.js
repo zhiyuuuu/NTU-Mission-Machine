@@ -59,12 +59,11 @@ exports.GetDetailOfTask = async(req, res) => {
     const task_id = req.body.id;
 
     const getDetail = await Task.findById(task_id);
+    console.log('finding task with id...', getDetail);
 
-    getDetail.exec((err, data) => {
-        if (err) {
-            res.status(403).send({ message: "error", content: [] });
-        }
-        res.send({ message: "success", content: data })
-    })
+    if (getDetail.length !== 0) {
+        res.send({ message: 'Get content of task.', content: getDetail })
+    }
+    res.send({ message: 'Get detail failed', content: [] })
 }
 
