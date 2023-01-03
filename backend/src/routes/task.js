@@ -20,12 +20,10 @@ exports.GetAllTasks = async(req, res) => {
     const findTask = await Task.find();
     console.log('data get from db...', findTask);
 
-    findTask.exec((err, data) => {
-        if (err) {
-            res.status(403).send({ message: "error", content: [] })
-        }
-        res.send({ message: "success", content: data })
-    })
+    if (findTask.length !== 0) {
+        res.send({ message: "success", content: findTask })
+    }
+    res.send({ message: "get task error", content: [] })
 }
 
 exports.GetReceivedTasks = async(req, res) => {
