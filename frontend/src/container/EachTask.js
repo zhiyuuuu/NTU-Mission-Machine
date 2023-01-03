@@ -6,21 +6,22 @@ import { handleApply } from "../api";
 
 const EachTask = () => {
   const displayStatus = (s) => {
-      const type = s.message;
-      console.log('message type:', type);
-      const content = { content: s.message, duration: 1 };
-      switch (type) {
-        case "success":
-          message.success("成功應徵!!");
-          break;
-        case "error":
-        default:
-          message.error(content);
-          break;
-      }
+    const type = s.message;
+    console.log("message type:", type);
+    const content = { content: s.message, duration: 1 };
+    switch (type) {
+      case "success":
+        message.success("成功應徵!!");
+        break;
+      case "error":
+      default:
+        message.error(content);
+        break;
+    }
   };
   const handleClick = async () => {
-    let response = await handleApply({ id, username });
+    const public_status = false;
+    let response = await handleApply({ id, username, public_status });
     // console.log(response);
     displayStatus(response);
   };
