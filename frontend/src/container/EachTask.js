@@ -6,9 +6,8 @@ import { handleApply } from "../api";
 
 const EachTask = () => {
   const displayStatus = (s) => {
-    if (s.message === "success") {
       const type = s.message;
-      console.log(type);
+      console.log('message type:', type);
       const content = { content: s.message, duration: 1 };
       switch (type) {
         case "success":
@@ -19,7 +18,6 @@ const EachTask = () => {
           message.error(content);
           break;
       }
-    }
   };
   const handleClick = async () => {
     let response = await handleApply({ id, username });
