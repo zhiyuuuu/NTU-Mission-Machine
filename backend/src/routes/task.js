@@ -61,6 +61,7 @@ exports.AddReceiverToTask = async(req, res) => {
     //console.log('backend received body', req.body.data);
     const username = req.body.data.username;
     const task_id = req.body.data.id;
+    const status = req.body.data.public_status;
 
     try {
         let findTask = await Task.findById(task_id);
@@ -68,7 +69,7 @@ exports.AddReceiverToTask = async(req, res) => {
         if (findTask.receiver !== "none") {
             res.send({ message: "Already been applied :(" })
         } else if (findTask.issuer !== username) {    //not same person
-            let updateTask = await Task.updateOne({ _id: task_id }, { receiver: username }, { new: true });
+            let updateTask = await Task.updateOne({ _id: task_id }, { receiver: username, public_status: status }, { new: true });
             console.log('issuer not same as receiver', updateTask);
             res.send({ message: "success" });
         } else {
