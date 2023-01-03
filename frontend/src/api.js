@@ -53,7 +53,8 @@ const handleEachTask = async (task_id) => {
 };
 
 const handleApply = async ({ task_id, username }) => {
-  return await instance.get("/apply").then((res) => {
+  return await instance.post("/apply", { task_id, username }).then((res) => {
+    console.log('res', res.data);
     return res.data;
   });
 };

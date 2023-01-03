@@ -7,11 +7,11 @@ import { handleApply } from "../api";
 const EachTask = () => {
   const handleClick = async () => {
     let response = await handleApply({ id, username });
-    console.log(response);
+    //console.log(response);
   };
 
   const { state } = useLocation();
-  console.log(state);
+  //console.log(state);
   const id = state.id;
   const topic = state.topic;
   const description = state.description;
