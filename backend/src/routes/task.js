@@ -63,8 +63,20 @@ exports.AddReceiverToTask = async(req, res) => {
     const task_id = req.body.data.id;
 
     try {
-        await Task.findOneAndUpdate({ _id: task_id }, { receiver: username }, { new: true });
-        res.send({ message: "success" });
+        // let updateTask = await Task.findOneAndUpdate({ _id: task_id }, { receiver: username }, { new: true });
+        // console.log('update task', updateTask);
+
+        let findTask = await Task.findById(task_id);
+        console.log('find the task...', findTask);
+        if (findTask.issuer !== username) { //not same person
+            let updateTask = await Task.updateOne({ _id: task_id }, { receiver: username }, { new: true });
+            console.log('issuer not same as receiver', updateTask);
+            res.send({ message: "success" });
+        } else {
+            res.send({ message: "issuer cannot be same as receiver!" })
+        }
+
+        //res.send({ message: "success" });
     } catch (error) {
         res.send({ message: "error" });
         throw new Error('updating error' + error);
