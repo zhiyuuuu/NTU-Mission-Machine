@@ -7,7 +7,7 @@ const TaskSchema = new Schema({
     issuer: { type: String },
     due: { type: String },
     detail: { type: String },
-    public_status: { type: String },
+    public_status: { type: Boolean, default: true },  //true : 有缺額
     receiver: { type: String, default: "none" },
     salary: { type: String }
 }, {

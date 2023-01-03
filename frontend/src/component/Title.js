@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   font-size: 40px;
   //padding: 30px;
   margin: 1em;
-  padding-left: 80px;
+  //padding-left: 80px;
 `;
 
 const Title = () => {
