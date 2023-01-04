@@ -1,5 +1,4 @@
 import { Card } from "antd";
-import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

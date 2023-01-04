@@ -2,7 +2,7 @@ import { Card, message } from "antd";
 import { useLocation } from "react-router-dom";
 // import { handleEachTask } from "../api";
 import { Button } from "antd";
-import { handleApply } from "../api";
+import { handleApply, updateDoneStatus } from "../api";
 
 const EachTask = () => {
   const displayStatus = (s) => {
@@ -11,7 +11,7 @@ const EachTask = () => {
     const content = { content: s.message, duration: 3 };
     switch (type) {
       case "success":
-        message.success("成功應徵!!");
+        message.success("成功!!");
         break;
       case "error":
       default:
@@ -23,6 +23,12 @@ const EachTask = () => {
     const public_status = false;
     let response = await handleApply({ id, username, public_status });
     // console.log(response);
+    displayStatus(response);
+  };
+
+  const handleDoneClick = async () => {
+    const done_status = true;
+    let response = await updateDoneStatus({ id, done_status });
     displayStatus(response);
   };
 
@@ -45,6 +51,45 @@ const EachTask = () => {
   if (receiver === username) {
     isReceiver = true;
   }
+  let button_status = "";
+  if (public_status) {
+    button_status = "open";
+  } else {
+    if (isIssuer) {
+      button_status = "issue";
+    }
+    if (isReceiver) {
+      button_status = "receive";
+    } else {
+      button_status = "closed";
+    }
+  }
+  const componentsSwtich = (key) => {
+    switch (key) {
+      case "open":
+        return (
+          <Button type="primary" size={"large"} onClick={handleClick}>
+            應徵!!
+          </Button>
+        );
+      case "closed":
+        return (
+          <Button type="dashed" size={"large"} danger>
+            已徵到善心人士了( ´▽｀)
+          </Button>
+        );
+      case "issue":
+        return <div>QQ</div>;
+      case "receive":
+        return (
+          <Button type="primary" size={"large"} onClick={handleDoneClick}>
+            已完成
+          </Button>
+        );
+      default:
+        break;
+    }
+  };
   //   console.log("eachTask", public_status);
   return (
     <div>
@@ -70,7 +115,7 @@ const EachTask = () => {
         <h3>在甚麼時候前完成?</h3>
         <p>{due}</p>
         {/* {isIssuer? <></>:} */}
-        {public_status ? (
+        {/* {public_status ? (
           <Button type="primary" size={"large"} onClick={handleClick}>
             應徵!!
           </Button>
@@ -79,10 +124,9 @@ const EachTask = () => {
           <Button type="dashed" size={"large"} danger>
             已徵到善心人士了( ´▽｀)
           </Button>
-        )}
-        {/* // <Button type="primary" size={"large"} onClick={handleClick}>
-        //   應徵!!
-        // </Button> */}
+        )} */}
+        {componentsSwtich(button_status)}
+        {console.log(button_status)}
       </Card>
     </div>
   );
