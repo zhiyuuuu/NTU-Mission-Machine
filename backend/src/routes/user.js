@@ -46,3 +46,15 @@ exports.AddTaskCount = async(req, res) => {
         throw new Error("Update count error" + error);
     }
 }
+
+exports.GetCount = async(req, res) => {
+    const username = req.body.username;
+    
+    try {
+        let findCnt = await User.find({ name: username })
+        console.log('find cnt..', findCnt.count);
+        res.send({ message: "success", content: findCnt.count })
+    } catch (error) {
+        throw new Error("Finding count error" + error);
+    }
+}

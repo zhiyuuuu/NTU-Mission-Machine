@@ -14,6 +14,7 @@ function main( app ) {
     app.post( '/myrequests', wrap( taskRoute.GetPostedTasks ) )
     app.post( '/progress', wrap( taskRoute.AddDoneStatus ) )
     app.post( '/record', wrap( userRoute.AddTaskCount ) )
+    app.post( '/getRecord', wrap( userRoute.GetCount ) )
 }
   
 export default main
