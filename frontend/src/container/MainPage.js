@@ -68,9 +68,11 @@ const MainPage = () => {
         // return <MainPageContent />;
         return (
           <Content
-            style={{
-              //margin: "0 16px",
-            }}
+            style={
+              {
+                //margin: "0 16px",
+              }
+            }
           >
             <div
               style={{
@@ -88,12 +90,15 @@ const MainPage = () => {
                   <Task
                     key={task._id}
                     description={task.detail}
+                    issuer={task.issuer}
+                    receiver={task.receiver}
                     id={task._id}
                     topic={task.name}
                     salary={task.salary}
                     due={task.due}
                     public_status={task.public_status}
                     curUserName={currentUser}
+                    done_status={task.done_status}
                   />
                 );
               })}

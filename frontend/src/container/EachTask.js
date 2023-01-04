@@ -46,24 +46,25 @@ const EachTask = () => {
   const receiver = state.receiver;
   let isIssuer = false;
   let isReceiver = false;
-  const setUserStatus = () => {
-    if (issuer === username) {
-      isIssuer = true;
-      console.log("yooooooo");
-    }
-    if (receiver === username) {
-      isReceiver = true;
-    }
-  };
+  if (issuer === username) {
+    isIssuer = true;
+    // console.log("yooooooo");
+  }
+  if (receiver === username) {
+    isReceiver = true;
+  }
 
-  useEffect(() => {
-    setUserStatus();
-  }, []);
+  //   useEffect(() => {
+  //     setUserStatus();
+  //     console.log(issuer);
+  //     console.log(username);
+  //   }, []);
   let button_status = "";
   if (public_status) {
     button_status = "open";
   } else {
-    if (isIssuer) {
+    // console.log(isIssuer);
+    if (isIssuer === true) {
       button_status = "issue";
     }
     if (isReceiver) {

@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 const Task = ({
   id,
   topic,
+  issuer,
+  receiver,
   description,
   salary,
   due,
   public_status,
   curUserName,
+  done_status,
 }) => {
   const navigate = useNavigate();
 
@@ -22,6 +25,8 @@ const Task = ({
         topic: topic,
         salary: salary,
         due: due,
+        issuer: issuer,
+        receiver: receiver,
         public_status: public_status,
         curUserName: curUserName,
       },
@@ -34,7 +39,7 @@ const Task = ({
         bordered={true}
         style={{
           width: "auto",
-          margin: "20px"
+          margin: "20px",
         }}
       >
         <h3>報酬 : </h3>

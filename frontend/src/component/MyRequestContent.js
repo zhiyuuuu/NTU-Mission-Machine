@@ -26,11 +26,14 @@ const MyRequestContent = ({ tasks, username }) => {
               key={task._id}
               id={task._id}
               topic={task.name}
+              issuer={task.issuer}
+              receiver={task.receiver}
               description={task.detail}
               salary={task.salary}
               due={task.due}
               public_status={task.public_status}
               curUserName={username}
+              done_status={task.done_status}
             />
           );
         })}
