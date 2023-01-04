@@ -62,14 +62,14 @@ const MyTasks = () => {
     asyncfunction();
   }, []);
 
-  useEffect(() => {
-    const asyncfunction = async () => {
-      const data = await getRecordTask(username);
-      //   console.log("all data", data);
-      setRemainTask(data.content);
-    };
-    asyncfunction();
-  }, []);
+  //   useEffect(() => {
+  //     const asyncfunction = async () => {
+  //       const data = await getRecordTask(username);
+  //       //   console.log("all data", data);
+  //       setRemainTask(data.content);
+  //     };
+  //     asyncfunction();
+  //   }, []);
 
   const componentsSwtich = (key) => {
     switch (key) {

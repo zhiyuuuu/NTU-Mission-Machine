@@ -26,61 +26,57 @@ const Login = () => {
   const navigateToMainPage = () => {
     navigate("/mainpage", {
       state: {
-        username: username
-      }
+        username: username,
+      },
     });
   };
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginTest = async() => {
+  const loginTest = async () => {
     let loginResult = await handleLogin({ username, password });
-    //console.log('login result', loginResult);
+
     if (loginResult.message === "success") {
-      //console.log('login success!');
-      navigateToMainPage()
+      navigateToMainPage();
     } else {
-      alert('Username or password is incorrect.')
-      //console.log('Cannot find users.');
+      alert("Username or password is incorrect.");
     }
     setUsername("");
     setPassword("");
-  }
+  };
 
   return (
     <Wrapper>
       <Title />
-        <div className="container">
-          <label>
-            <b>Username</b>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            // name="uname"
-            // required
-            onChange={(e) => { setUsername(e.target.value) }}
-          />
+      <div className="container">
+        <label>
+          <b>Username</b>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Username"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
 
-          <label>
-            <b>Password</b>
-          </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            // name="psw"
-            // required
-            onChange={(e) => { setPassword(e.target.value) }}
-          />
+        <label>
+          <b>Password</b>
+        </label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
 
-          <button onClick={loginTest}>
-            Login
-          </button>
-          <button type="submit" onClick={() => navigateToSignUp()}>
-            Register?
-          </button>
-        </div>
+        <button onClick={loginTest}>Login</button>
+        <button type="submit" onClick={() => navigateToSignUp()}>
+          Register?
+        </button>
+      </div>
     </Wrapper>
   );
 };

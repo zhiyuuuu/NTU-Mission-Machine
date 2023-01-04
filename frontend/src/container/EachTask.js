@@ -8,7 +8,6 @@ import { handleApply, updateDoneStatus } from "../api";
 const EachTask = () => {
   const displayStatus = (s) => {
     const type = s.message;
-    console.log("message type:", type);
     const content = { content: s.message, duration: 3 };
     switch (type) {
       case "success":
@@ -23,7 +22,6 @@ const EachTask = () => {
   const handleClick = async () => {
     const public_status = false;
     let response = await handleApply({ id, username, public_status });
-    // console.log(response);
     displayStatus(response);
   };
 
@@ -35,16 +33,14 @@ const EachTask = () => {
 
   const navigate = useNavigate();
   const backToMainpage = () => {
-    navigate('/mainpage', {
+    navigate("/mainpage", {
       state: {
-        username: username
-      }
+        username: username,
+      },
     });
-  }
-
+  };
 
   const { state } = useLocation();
-  //console.log(state);
   const id = state.id;
   const topic = state.topic;
   const description = state.description;
@@ -59,7 +55,6 @@ const EachTask = () => {
   let isReceiver = false;
   if (issuer === username) {
     isIssuer = true;
-    // console.log("yooooooo");
   }
   if (receiver === username) {
     isReceiver = true;
@@ -113,7 +108,6 @@ const EachTask = () => {
         break;
     }
   };
-  //   console.log("eachTask", public_status);
   return (
     <div style={{ margin: "3em", display: "flex", flexDirection: "column" }}>
       <h1
@@ -137,25 +131,16 @@ const EachTask = () => {
         <p>{salary}</p>
         <h3>在甚麼時候前完成?</h3>
         <p>{due}</p>
-        {/* {isIssuer? <></>:} */}
-        {/* {public_status ? (
-          <Button type="primary" size={"large"} onClick={handleClick}>
-            應徵!!
-          </Button>
-        ) : (
-          //   <Button type="dashed" size={"large"} danger onClick={handleClick}>
-          <Button type="dashed" size={"large"} danger>
-            已徵到善心人士了( ´▽｀)
-          </Button>
-        )} */}
         {componentsSwtich(button_status)}
-        {console.log(button_status)}
-        {/* {console.log(isIssuer)} */}
       </Card>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
-        <Button style={{ width: "10%" }} onClick={backToMainpage}> 回首頁 </Button>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+      >
+        <Button style={{ width: "10%" }} onClick={backToMainpage}>
+          {" "}
+          回首頁{" "}
+        </Button>
       </div>
-      
     </div>
   );
 };
