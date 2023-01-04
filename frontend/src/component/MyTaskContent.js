@@ -10,12 +10,7 @@ const MyTaskContent = ({ tasks, username }) => {
   } = theme.useToken();
   let taskCnt = tasks.filter((task) => task.done === false).length;
   console.log(taskCnt);
-  useEffect(() => {
-    const asyncfunction = async () => {
-      const data = await recordTask({ taskCnt, username });
-    };
-    asyncfunction();
-  }, []);
+  recordTask({ taskCnt, username });
   return (
     <Content
       style={{
