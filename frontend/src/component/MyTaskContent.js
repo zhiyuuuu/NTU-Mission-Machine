@@ -12,7 +12,7 @@ const MyTaskContent = ({ tasks, username }) => {
   console.log(taskCnt);
   useEffect(() => {
     const asyncfunction = async () => {
-      const data = await recordTask(taskCnt, username);
+      const data = await recordTask({ taskCnt, username });
     };
     asyncfunction();
   }, []);
