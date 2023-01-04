@@ -57,7 +57,7 @@ const MainPage = () => {
   useEffect(() => {
     const asyncfunction = async () => {
       const data = await handleAllTasks();
-      console.log("all data", data);
+      //console.log("all data", data);
       setAllTasks(data.content);
     };
     asyncfunction();
@@ -66,7 +66,7 @@ const MainPage = () => {
     useEffect(() => {
       const asyncfunction = async () => {
         const data = await getRecordTask(currentUser);
-        console.log("remainTask", data);
+        //console.log("remainTask", data);
         setRemainTask(data.content);
       };
       asyncfunction();
