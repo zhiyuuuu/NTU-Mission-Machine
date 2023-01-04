@@ -8,18 +8,11 @@ const MyTaskContent = ({ tasks, username }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  let taskCnt = 0;
-  // console.log(tasks[0]);
-  for (let i = 0; i < tasks.length; i++) {
-    if (tasks[i].done === false) {
-      taskCnt++;
-    }
-  }
+  let taskCnt = tasks.filter((task) => task.done === false).length;
+  console.log(taskCnt);
   useEffect(() => {
     const asyncfunction = async () => {
       const data = await recordTask(taskCnt, username);
-      console.log("taskCnt data", data.content);
-      // setTasks(data.content);
     };
     asyncfunction();
   }, []);
