@@ -8,6 +8,7 @@ const TaskSchema = new Schema({
     due: { type: String },
     detail: { type: String },
     public_status: { type: Boolean, default: true },  //true : 有缺額
+    done: { type: Boolean, default: false },   //false: 還沒 done
     receiver: { type: String, default: "none" },
     salary: { type: String }
 }, {

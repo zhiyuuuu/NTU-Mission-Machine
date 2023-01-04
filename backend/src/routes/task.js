@@ -87,6 +87,21 @@ exports.AddReceiverToTask = async(req, res) => {
     }
 }
 
+exports.AddDoneStatus = async(req, res) => {
+    
+    const id = req.body.data.id;
+    const done = req.body.data.done;
+
+    try {
+        await Task.findByIdAndUpdate(id, { done: done });
+        console.log('find the task and update it\'s done status.');
+        res.send({ message: "success" })
+    } catch (error) {
+        res.send({ message: "Update status error" })
+        throw new Error('updating error' + error)
+    }
+}
+
 // exports.GetDetailOfTask = async(req, res) => {
 //     const task_id = req.body.id;
 

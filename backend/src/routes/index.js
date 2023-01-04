@@ -12,6 +12,7 @@ function main( app ) {
     app.post( '/apply', wrap( taskRoute.AddReceiverToTask ) )
     app.post( '/mytasks', wrap( taskRoute.GetReceivedTasks ) )
     app.post( '/myrequests', wrap( taskRoute.GetPostedTasks ) )
+    app.post( '/progress', wrap( taskRoute.AddDoneStatus ) )
 }
   
 export default main
