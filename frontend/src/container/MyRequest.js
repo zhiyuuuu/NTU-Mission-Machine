@@ -3,7 +3,7 @@ import { FileOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import MyRequestContent from "../component/MyRequestContent";
-import { handleMyRequest } from "../api";
+import { handleMyRequest, getRecordTask } from "../api";
 const { Header, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -57,6 +57,14 @@ const MyRequest = () => {
       const data = await handleMyRequest(username);
       // console.log("my request data", data.content);
       setTasks(data.content);
+    };
+    asyncfunction();
+  }, []);
+  useEffect(() => {
+    const asyncfunction = async () => {
+      const data = await getRecordTask(username);
+      //   console.log("all data", data);
+      setRemainTask(data.content);
     };
     asyncfunction();
   }, []);

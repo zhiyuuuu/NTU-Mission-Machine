@@ -61,7 +61,19 @@ const handleApply = async (data) => {
 
 const updateDoneStatus = async (data) => {
   return await instance.post("/progress", { data }).then((res) => {
-    console.log("update done status api res", res.data);
+    // console.log("update done status api res", res.data);
+    return res.data;
+  });
+};
+
+const recordTask = async (data) => {
+  return await instance.post("/record", { data }).then((res) => {
+    return res.data;
+  });
+};
+
+const getRecordTask = async (username) => {
+  return await instance.post("/getrecord", { username }).then((res) => {
     return res.data;
   });
 };
@@ -76,4 +88,6 @@ export {
   handleEachTask,
   handleApply,
   updateDoneStatus,
+  recordTask,
+  getRecordTask,
 };

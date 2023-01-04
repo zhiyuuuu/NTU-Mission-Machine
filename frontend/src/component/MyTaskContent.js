@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout, theme } from "antd";
-// import Task from "./Task";
+import { recordTask } from "../api";
 import AppliedTask from "./AppliedTask";
 const { Content } = Layout;
 
@@ -15,7 +15,14 @@ const MyTaskContent = ({ tasks, username }) => {
       taskCnt++;
     }
   }
-  // console.log(taskCnt);
+  useEffect(() => {
+    const asyncfunction = async () => {
+      const data = await recordTask(taskCnt, username);
+      console.log("taskCnt data", data.content);
+      // setTasks(data.content);
+    };
+    asyncfunction();
+  }, []);
   return (
     <Content
       style={{

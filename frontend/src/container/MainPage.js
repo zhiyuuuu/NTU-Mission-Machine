@@ -4,7 +4,7 @@ import { Layout, Menu, theme } from "antd";
 import Task from "../component/Task";
 import AddPostBox from "../component/AddPostBox";
 import { useLocation, useNavigate } from "react-router-dom";
-import { handleAllTasks } from "../api";
+import { handleAllTasks, getRecordTask } from "../api";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -62,6 +62,15 @@ const MainPage = () => {
     };
     asyncfunction();
   }, [data]);
+
+  useEffect(() => {
+    const asyncfunction = async () => {
+      const data = await getRecordTask(currentUser);
+      //   console.log("all data", data);
+      setRemainTask(data.content);
+    };
+    asyncfunction();
+  }, []);
 
   const componentsSwtich = (key) => {
     switch (key) {
