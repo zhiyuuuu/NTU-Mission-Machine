@@ -63,19 +63,18 @@ const MainPage = () => {
     asyncfunction();
   }, [data]);
 
-  useEffect(() => {
-    const asyncfunction = async () => {
-      const data = await getRecordTask(currentUser);
-      //   console.log("all data", data);
-      setRemainTask(data.content);
-    };
-    asyncfunction();
-  }, []);
+  //   useEffect(() => {
+  //     const asyncfunction = async () => {
+  //       const data = await getRecordTask(currentUser);
+  //       console.log("remainTask", data);
+  //       setRemainTask(data.content);
+  //     };
+  //     asyncfunction();
+  //   }, []);
 
   const componentsSwtich = (key) => {
     switch (key) {
       case "1":
-        // return <MainPageContent />;
         return (
           <Content
             style={
@@ -172,10 +171,7 @@ const MainPage = () => {
           Ongoing task : {remainTask}
         </Header>
 
-        <div>
-          {componentsSwtich(selectedMenuItem)}
-          {/* <MainPageContent /> */}
-        </div>
+        <div>{componentsSwtich(selectedMenuItem)}</div>
 
         <Footer
           style={{
