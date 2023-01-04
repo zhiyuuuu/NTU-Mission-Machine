@@ -1,13 +1,14 @@
 import User from "../models/users";
+import taskRoute from "./task";
 
 exports.LoginByPassword = async(req, res) => {
     const username = req.body.data.username;
     const password = req.body.data.password;
 
-    console.log('backend received user', req.body.data);
+    //console.log('backend received user', req.body.data);
 
     const findUser = await User.find({ name: username, password });
-    console.log('finding user...', findUser);
+    //console.log('finding user...', findUser);
 
     if (findUser.length !== 0) {
         //console.log('send to frontend');
@@ -22,7 +23,7 @@ exports.SignUp = async(req, res) => {
     const name = body.newName;
     const password = body.newPswd;
     //let currTask = []
-    console.log('backend received sign up :', body);
+    //console.log('backend received sign up :', body);
 
     const setNewUser = new User({ name, password });
 
@@ -34,26 +35,18 @@ exports.SignUp = async(req, res) => {
     }
 }
 
-exports.AddTaskCount = async(req, res) => {
-    const username = req.body.data.username;
-    const count = req.body.data.taskCnt;
-
-    try {
-        await User.findOneAndUpdate({ name: username }, { taskCount: count })
-        console.log('updating task count...');
-        res.send({ message: "success" })
-    } catch (error) {
-        throw new Error("Update count error" + error);
-    }
-}
 
 exports.GetCount = async(req, res) => {
-    const username = req.body.username;
+    const user = req.body.username;
+    //console.log('backend received user', username);
+    const count = await taskRoute.CountOngoingTask(user)
+    //console.log('counting result', count);
     
     try {
-        let findCnt = await User.find({ name: username })
-        console.log('find cnt..', findCnt[0].taskCount);
-        res.send({ message: "success", content: findCnt[0].taskCount })
+        let updateCnt = await User.findOneAndUpdate({ name: user }, { taskCount: count }, { new: true })
+        //console.log('updating...', updateCnt.taskCount);
+        // console.log('find cnt..', findCnt[0].taskCount);
+        res.send({ message: "success", content: updateCnt.taskCount })
     } catch (error) {
         throw new Error("Finding count error" + error);
     }

@@ -13,7 +13,6 @@ function main( app ) {
     app.post( '/mytasks', wrap( taskRoute.GetReceivedTasks ) )
     app.post( '/myrequests', wrap( taskRoute.GetPostedTasks ) )
     app.post( '/progress', wrap( taskRoute.AddDoneStatus ) )
-    app.post( '/record', wrap( userRoute.AddTaskCount ) )
     app.post( '/getRecord', wrap( userRoute.GetCount ) )
 }
   

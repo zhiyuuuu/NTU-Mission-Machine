@@ -65,6 +65,7 @@ const MyRequest = () => {
       const data = await getRecordTask(username);
       //   console.log("all data", data);
       setRemainTask(data.content);
+      console.log('my request get count', data.content);
     };
     asyncfunction();
   }, []);

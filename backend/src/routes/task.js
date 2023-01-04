@@ -2,7 +2,7 @@ import Task from "../models/task";
 
 exports.AddNewTask = async(req, res) => {
     const body = req.body;
-    console.log('backend received data', body);
+    //console.log('backend received data', body);
     const { topic, description, salary, ddl, curUserName } = body.data;
     const newTask = new Task({ name: topic, detail: description, salary: salary, due: ddl, issuer: curUserName });
 
@@ -18,7 +18,7 @@ exports.AddNewTask = async(req, res) => {
 
 exports.GetAllTasks = async(req, res) => {
     const findTask = await Task.find();
-    console.log('data get from db...', findTask);
+    //console.log('data get from db...', findTask);
 
     if (findTask.length !== 0) {
         res.send({ message: "success", content: findTask })
@@ -29,10 +29,10 @@ exports.GetAllTasks = async(req, res) => {
 
 exports.GetReceivedTasks = async(req, res) => {
     const username = req.body.username;
-    console.log('backend received username', username);
+    //console.log('backend received username', username);
 
     const findReceivedTask = await Task.find({ receiver: username });
-    console.log('finding user received tasks...', findReceivedTask);
+    //console.log('finding user received tasks...', findReceivedTask);
 
     if (findReceivedTask.length !== 0) {
         res.send({ message: 'Found received task.', content: findReceivedTask })
@@ -44,10 +44,10 @@ exports.GetReceivedTasks = async(req, res) => {
 exports.GetPostedTasks = async(req, res) => {
     //console.log('received', req.body);
     const username = req.body.username;
-    console.log('backend received username', username);
+    //console.log('backend received username', username);
 
     const findPostedTask = await Task.find({ issuer: username });
-    console.log('finding user posted tasks...', findPostedTask);
+    //console.log('finding user posted tasks...', findPostedTask);
 
     if (findPostedTask.length !== 0) {
         res.send({ message: 'Found posted task.', content: findPostedTask })
@@ -65,7 +65,7 @@ exports.AddReceiverToTask = async(req, res) => {
 
     try {
         let findTask = await Task.findById(task_id);
-        console.log('find the task...', findTask);
+        //console.log('find the task...', findTask);
         if (findTask.receiver !== "none") {
             res.send({ message: "Already been applied :(" })
         } else if (findTask.issuer !== username) {    //not same person
@@ -87,8 +87,7 @@ exports.AddReceiverToTask = async(req, res) => {
     }
 }
 
-exports.AddDoneStatus = async(req, res) => {
-    
+exports.AddDoneStatus = async(req, res) => {  
     const id = req.body.data.id;
     const done = req.body.data.done_status;
 
@@ -102,15 +101,11 @@ exports.AddDoneStatus = async(req, res) => {
     }
 }
 
-// exports.GetDetailOfTask = async(req, res) => {
-//     const task_id = req.body.id;
+exports.CountOngoingTask = async(user) => {
+    const findOngoingTask = await Task.find({ receiver: user, done: false });
+    //console.log('find ongoing task of ' + user + '...', findOngoingTask);
+    const taskCnt = findOngoingTask.length;
+    //console.log('count from task', taskCnt);
 
-//     const getDetail = await Task.findById(task_id);
-//     console.log('finding task with id...', getDetail);
-
-//     if (getDetail.length !== 0) {
-//         res.send({ message: 'Get content of task.', content: getDetail })
-//     }
-//     res.send({ message: 'Get detail failed', content: [] })
-// }
-
+    return taskCnt;
+}
