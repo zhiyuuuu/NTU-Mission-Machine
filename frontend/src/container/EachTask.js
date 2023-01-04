@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Card, message } from "antd";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import { handleEachTask } from "../api";
 import { Button } from "antd";
 import { handleApply, updateDoneStatus } from "../api";
@@ -32,6 +32,16 @@ const EachTask = () => {
     let response = await updateDoneStatus({ id, done_status });
     displayStatus(response);
   };
+
+  const navigate = useNavigate();
+  const backToMainpage = () => {
+    navigate('/mainpage', {
+      state: {
+        username: username
+      }
+    });
+  }
+
 
   const { state } = useLocation();
   //console.log(state);
@@ -105,7 +115,7 @@ const EachTask = () => {
   };
   //   console.log("eachTask", public_status);
   return (
-    <div>
+    <div style={{ margin: "3em", display: "flex", flexDirection: "column" }}>
       <h1
         style={{
           textAlign: "center",
@@ -142,6 +152,10 @@ const EachTask = () => {
         {console.log(button_status)}
         {/* {console.log(isIssuer)} */}
       </Card>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+        <Button style={{ width: "10%" }} onClick={backToMainpage}> 回首頁 </Button>
+      </div>
+      
     </div>
   );
 };
