@@ -61,7 +61,8 @@ const MainPage = () => {
       setAllTasks(data.content);
     };
     asyncfunction();
-  }, []);
+  }, [data]);
+
   const componentsSwtich = (key) => {
     switch (key) {
       case "1":
