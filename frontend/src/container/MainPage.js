@@ -69,7 +69,7 @@ const MainPage = () => {
         return (
           <Content
             style={{
-              margin: "0 16px",
+              //margin: "0 16px",
             }}
           >
             <div
@@ -77,6 +77,7 @@ const MainPage = () => {
                 padding: 24,
                 minHeight: 360,
                 background: colorBgContainer,
+                margin: "10px",
               }}
             >
               <AddPostBox setData={setData} curUserName={currentUser} />

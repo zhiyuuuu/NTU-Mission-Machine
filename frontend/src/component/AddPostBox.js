@@ -41,14 +41,22 @@ const AddPostBox = ({ setData, curUserName }) => {
     console.log(date, dateString);
     setDDL(dateString);
   }
+
+  const style = { margin: "10px", width: "90%" }
   return (
-    <>
-      <TextArea rows={1} placeholder="任務名稱" onChange={topicChange} />
-      <br />
-      <TextArea rows={4} placeholder="任務內容簡介" onChange={descChange} />
-      <TextArea rows={1} placeholder="酬勞" onChange={salaryChange} />
-      <Space direction="vertical" size={12}>
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      //background: "black",
+      padding: "10px"
+    }}>
+      <TextArea rows={1} placeholder="任務名稱" onChange={topicChange} style={style} />
+      <TextArea rows={4} placeholder="任務內容簡介" onChange={descChange} style={style} />
+      <TextArea rows={1} placeholder="酬勞" onChange={salaryChange} style={style} />
+      <Space direction="vertical" size={12} style={{ display: "flex", justifyContent: "space-between", flexDirection: "row" }}>
         <DatePicker
+          style={{ margin: "10px", width: "auto" }}
           onChange={ddlChange}
           dateRender={(current) => {
             const style = {};
@@ -65,9 +73,10 @@ const AddPostBox = ({ setData, curUserName }) => {
             );
           }}
         />
+        <Button onClick={addTask} style={{ margin: "10px" }} type="primary" >Post</Button>
       </Space>
-      <Button onClick={addTask}>Post</Button>
-    </>
+      {/* <Button onClick={addTask} style={{ margin: "10px" }} >Post</Button> */}
+    </div>
   );
 };
 export default AddPostBox;
