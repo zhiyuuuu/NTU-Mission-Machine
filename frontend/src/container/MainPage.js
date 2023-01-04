@@ -85,23 +85,26 @@ const MainPage = () => {
               <AddPostBox setData={setData} curUserName={currentUser} />
               <br />
               <br />
-              {allTasks.map((task) => {
-                return (
-                  <Task
-                    key={task._id}
-                    description={task.detail}
-                    issuer={task.issuer}
-                    receiver={task.receiver}
-                    id={task._id}
-                    topic={task.name}
-                    salary={task.salary}
-                    due={task.due}
-                    public_status={task.public_status}
-                    curUserName={currentUser}
-                    done_status={task.done_status}
-                  />
-                );
-              })}
+              <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+                {allTasks.map((task) => {
+                  return (
+                    <Task
+                      key={task._id}
+                      description={task.detail}
+                      issuer={task.issuer}
+                      receiver={task.receiver}
+                      id={task._id}
+                      topic={task.name}
+                      salary={task.salary}
+                      due={task.due}
+                      public_status={task.public_status}
+                      curUserName={currentUser}
+                      done_status={task.done_status}
+                    />
+                  );
+                })}
+              </div>
+              
             </div>
           </Content>
         );
