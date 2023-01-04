@@ -33,7 +33,7 @@ const MyRequestContent = ({ tasks, username }) => {
               due={task.due}
               public_status={task.public_status}
               curUserName={username}
-              done_status={task.done_status}
+              done_status={task.done}
             />
           );
         })}

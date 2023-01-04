@@ -34,7 +34,7 @@ const MyTaskContent = ({ tasks, username }) => {
               public_status={task.public_status}
               receiver={task.receiver}
               curUserName={username}
-              done_status={task.done_status}
+              done_status={task.done}
             />
           );
         })}

@@ -44,6 +44,7 @@ const EachTask = () => {
   const public_status = state.public_status;
   const issuer = state.issuer;
   const receiver = state.receiver;
+  const done_status = state.done_status;
   let isIssuer = false;
   let isReceiver = false;
   if (issuer === username) {
@@ -54,11 +55,6 @@ const EachTask = () => {
     isReceiver = true;
   }
 
-  //   useEffect(() => {
-  //     setUserStatus();
-  //     console.log(issuer);
-  //     console.log(username);
-  //   }, []);
   let button_status = "";
   if (public_status) {
     button_status = "open";
@@ -87,9 +83,14 @@ const EachTask = () => {
           </Button>
         );
       case "issue":
-        return <div>QQ</div>;
+        return <div></div>;
       case "receive":
-        return (
+        console.log(done_status);
+        return done_status ? (
+          <Button type="dashed" size={"large"} danger>
+            功成身退
+          </Button>
+        ) : (
           <Button type="primary" size={"large"} onClick={handleDoneClick}>
             已完成
           </Button>

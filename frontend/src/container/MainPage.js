@@ -100,12 +100,11 @@ const MainPage = () => {
                       due={task.due}
                       public_status={task.public_status}
                       curUserName={currentUser}
-                      done_status={task.done_status}
+                      done_status={task.done}
                     />
                   );
                 })}
               </div>
-              
             </div>
           </Content>
         );
