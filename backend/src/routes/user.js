@@ -52,8 +52,8 @@ exports.GetCount = async(req, res) => {
     
     try {
         let findCnt = await User.find({ name: username })
-        console.log('find cnt..', findCnt.taskCount);
-        res.send({ message: "success", content: findCnt.taskCount })
+        console.log('find cnt..', findCnt[0].taskCount);
+        res.send({ message: "success", content: findCnt[0].taskCount })
     } catch (error) {
         throw new Error("Finding count error" + error);
     }
