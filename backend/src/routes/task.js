@@ -90,7 +90,7 @@ exports.AddReceiverToTask = async(req, res) => {
 exports.AddDoneStatus = async(req, res) => {
     
     const id = req.body.data.id;
-    const done = req.body.data.done;
+    const done = req.body.data.done_status;
 
     try {
         await Task.findByIdAndUpdate(id, { done: done });
