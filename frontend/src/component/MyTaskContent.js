@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout, theme } from "antd";
-import Task from "./Task";
+// import Task from "./Task";
+import AppliedTask from "./AppliedTask";
 const { Content } = Layout;
 
 const MyTaskContent = ({ tasks, username }) => {
@@ -22,15 +23,18 @@ const MyTaskContent = ({ tasks, username }) => {
       >
         {tasks.map((task) => {
           return (
-            <Task
+            <AppliedTask
               key={task._id}
               id={task._id}
               topic={task.name}
+              issuer={task.issuer}
               description={task.detail}
               salary={task.salary}
               due={task.due}
               public_status={task.public_status}
+              receiver={task.receiver}
               curUserName={username}
+              done_status={task.done_status}
             />
           );
         })}

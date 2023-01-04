@@ -35,7 +35,17 @@ const EachTask = () => {
   const due = state.due;
   const username = state.curUserName;
   const public_status = state.public_status;
-  console.log("eachTask", public_status);
+  const issuer = state.issuer;
+  const receiver = state.receiver;
+  let isIssuer = false;
+  let isReceiver = false;
+  if (issuer === username) {
+    isIssuer = true;
+  }
+  if (receiver === username) {
+    isReceiver = true;
+  }
+  //   console.log("eachTask", public_status);
   return (
     <div>
       <h1
@@ -59,6 +69,7 @@ const EachTask = () => {
         <p>{salary}</p>
         <h3>在甚麼時候前完成?</h3>
         <p>{due}</p>
+        {/* {isIssuer? <></>:} */}
         {public_status ? (
           <Button type="primary" size={"large"} onClick={handleClick}>
             應徵!!
