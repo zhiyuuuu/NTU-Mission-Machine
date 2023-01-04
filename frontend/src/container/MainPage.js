@@ -63,14 +63,14 @@ const MainPage = () => {
     asyncfunction();
   }, [data]);
 
-  //   useEffect(() => {
-  //     const asyncfunction = async () => {
-  //       const data = await getRecordTask(currentUser);
-  //       console.log("remainTask", data);
-  //       setRemainTask(data.content);
-  //     };
-  //     asyncfunction();
-  //   }, []);
+    useEffect(() => {
+      const asyncfunction = async () => {
+        const data = await getRecordTask(currentUser);
+        console.log("remainTask", data);
+        setRemainTask(data.content);
+      };
+      asyncfunction();
+    }, []);
 
   const componentsSwtich = (key) => {
     switch (key) {
