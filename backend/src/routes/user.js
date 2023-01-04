@@ -33,3 +33,16 @@ exports.SignUp = async(req, res) => {
         throw new Error("Sign up saving error" + error);
     }
 }
+
+exports.AddTaskCount = async(req, res) => {
+    const username = req.body.data.username;
+    const count = req.body.data.taskCnt;
+
+    try {
+        await User.findOneAndUpdate({ name: username }, { taskCount: count })
+        console.log('updating task count...');
+        res.send({ message: "success" })
+    } catch (error) {
+        throw new Error("Update count error" + error);
+    }
+}
