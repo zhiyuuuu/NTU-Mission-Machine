@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Card, message } from "antd";
 import { useLocation } from "react-router-dom";
 // import { handleEachTask } from "../api";
@@ -45,12 +46,19 @@ const EachTask = () => {
   const receiver = state.receiver;
   let isIssuer = false;
   let isReceiver = false;
-  if (issuer === username) {
-    isIssuer = true;
-  }
-  if (receiver === username) {
-    isReceiver = true;
-  }
+  const setUserStatus = () => {
+    if (issuer === username) {
+      isIssuer = true;
+      console.log("yooooooo");
+    }
+    if (receiver === username) {
+      isReceiver = true;
+    }
+  };
+
+  useEffect(() => {
+    setUserStatus();
+  }, []);
   let button_status = "";
   if (public_status) {
     button_status = "open";
@@ -127,6 +135,7 @@ const EachTask = () => {
         )} */}
         {componentsSwtich(button_status)}
         {console.log(button_status)}
+        {console.log(isIssuer)}
       </Card>
     </div>
   );
