@@ -6,7 +6,7 @@ import TaskData from "../task.json";
 const dataInit = async() => {
     const checkUser = await UserModel.find();
 
-    if (checkUser.length !== 2) {
+    if (checkUser.length !== 3) {
         console.log("Total users are not equal to default ", checkUser.length)
         await UserModel.deleteMany({})
         await UserModel.insertMany(UserData)
