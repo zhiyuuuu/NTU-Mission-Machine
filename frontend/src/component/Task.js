@@ -34,6 +34,7 @@ const Task = ({
         bordered={true}
         style={{
           width: "auto",
+          margin: "20px"
         }}
       >
         <h3>報酬 : </h3>
