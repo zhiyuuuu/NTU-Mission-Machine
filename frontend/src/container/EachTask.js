@@ -8,7 +8,7 @@ const EachTask = () => {
   const displayStatus = (s) => {
     const type = s.message;
     console.log("message type:", type);
-    const content = { content: s.message, duration: 1 };
+    const content = { content: s.message, duration: 3 };
     switch (type) {
       case "success":
         message.success("成功應徵!!");
@@ -34,6 +34,7 @@ const EachTask = () => {
   const salary = state.salary;
   const due = state.due;
   const username = state.curUserName;
+  const public_status = state.public_status;
   return (
     <div>
       <h1
@@ -57,9 +58,18 @@ const EachTask = () => {
         <p>{salary}</p>
         <h3>在甚麼時候前完成?</h3>
         <p>{due}</p>
-        <Button type="primary" size={"large"} onClick={handleClick}>
-          應徵!!
-        </Button>
+        {public_status ? (
+          <Button type="primary" size={"large"} onClick={handleClick}>
+            應徵!!
+          </Button>
+        ) : (
+          <Button type="dashed" size={"large"} danger onClick={handleClick}>
+            已徵到善心人士了( ´▽｀)
+          </Button>
+        )}
+        {/* // <Button type="primary" size={"large"} onClick={handleClick}>
+        //   應徵!!
+        // </Button> */}
       </Card>
     </div>
   );

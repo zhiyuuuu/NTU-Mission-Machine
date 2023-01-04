@@ -40,7 +40,8 @@ const Task = ({
         <p>{salary}</p>
         <h3>在甚麼時候前完成?</h3>
         <p>{due}</p>
-        {public_status ? <StopOutlined /> : <CheckCircleOutlined />}
+        {/* {public_status ? <StopOutlined /> : <CheckCircleOutlined />} */}
+        {public_status ? <p>還需要!</p> : <p>已徵到</p>}
       </Card>
     </div>
   );

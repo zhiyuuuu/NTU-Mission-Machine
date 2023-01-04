@@ -28,10 +28,18 @@ const MyTasks = () => {
     navigate("/");
   };
   const navigateToMyRequest = () => {
-    navigate("/myrequest");
+    navigate("/myrequest", {
+      state: {
+        username: username,
+      },
+    });
   };
   const navigateToMainPage = () => {
-    navigate("/mainpage");
+    navigate("/mainpage", {
+      state: {
+        username: username,
+      },
+    });
   };
 
   const { state } = useLocation();
