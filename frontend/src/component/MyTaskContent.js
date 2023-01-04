@@ -8,6 +8,14 @@ const MyTaskContent = ({ tasks, username }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  let taskCnt = 0;
+  // console.log(tasks[0]);
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].done === false) {
+      taskCnt++;
+    }
+  }
+  // console.log(taskCnt);
   return (
     <Content
       style={{
