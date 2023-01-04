@@ -55,7 +55,7 @@ const MyRequest = () => {
   useEffect(() => {
     const asyncfunction = async () => {
       const data = await handleMyRequest(username);
-      console.log("my request data", data);
+      // console.log("my request data", data.content);
       setTasks(data.content);
     };
     asyncfunction();

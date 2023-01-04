@@ -31,7 +31,7 @@ const Task = ({
     <div onClick={() => navigateToTask(id)}>
       <Card
         title={topic}
-        bordered={false}
+        bordered={true}
         style={{
           width: "auto",
         }}
@@ -41,7 +41,9 @@ const Task = ({
         <h3>在甚麼時候前完成?</h3>
         <p>{due}</p>
         {/* {public_status ? <StopOutlined /> : <CheckCircleOutlined />} */}
+        <h3>目前狀態 :</h3>
         {public_status ? <p>還需要!</p> : <p>已徵到</p>}
+        {/* <p>{public_status}</p> */}
       </Card>
     </div>
   );

@@ -35,6 +35,7 @@ const EachTask = () => {
   const due = state.due;
   const username = state.curUserName;
   const public_status = state.public_status;
+  console.log("eachTask", public_status);
   return (
     <div>
       <h1
@@ -63,7 +64,8 @@ const EachTask = () => {
             應徵!!
           </Button>
         ) : (
-          <Button type="dashed" size={"large"} danger onClick={handleClick}>
+          //   <Button type="dashed" size={"large"} danger onClick={handleClick}>
+          <Button type="dashed" size={"large"} danger>
             已徵到善心人士了( ´▽｀)
           </Button>
         )}
