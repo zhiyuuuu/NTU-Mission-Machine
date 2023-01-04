@@ -66,8 +66,7 @@ const EachTask = () => {
     // console.log(isIssuer);
     if (isIssuer === true) {
       button_status = "issue";
-    }
-    if (isReceiver) {
+    } else if (isReceiver) {
       button_status = "receive";
     } else {
       button_status = "closed";
@@ -135,8 +134,8 @@ const EachTask = () => {
           </Button>
         )} */}
         {componentsSwtich(button_status)}
-        {console.log(button_status)}
-        {console.log(isIssuer)}
+        {/* {console.log(button_status)}
+        {console.log(isIssuer)} */}
       </Card>
     </div>
   );
