@@ -1,6 +1,4 @@
-// import React, { useEffect } from "react";
 import { Layout, theme } from "antd";
-// import { recordTask } from "../api";
 import AppliedTask from "./AppliedTask";
 const { Content } = Layout;
 
@@ -8,9 +6,6 @@ const MyTaskContent = ({ tasks, username }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  // let taskCnt = tasks.filter((task) => task.done === false).length;
-  // console.log(taskCnt);
-  // recordTask({ taskCnt, username });
   return (
     <Content
       style={{
