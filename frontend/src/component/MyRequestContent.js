@@ -18,11 +18,14 @@ const MyRequestContent = ({ tasks, username }) => {
           padding: 24,
           minHeight: 360,
           background: colorBgContainer,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
         }}
       >
         {tasks.map((task) => {
           return (
-            <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+            <div style={{ display: "flex", flexDirection: "column-reverse", width: "60%" }}>
               <Task
                 key={task._id}
                 id={task._id}

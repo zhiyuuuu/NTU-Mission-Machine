@@ -89,12 +89,13 @@ const MainPage = () => {
                 minHeight: 360,
                 background: colorBgContainer,
                 margin: "10px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
               }}
             >
               <AddPostBox setData={setData} curUserName={currentUser} />
-              <br />
-              <br />
-              <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+              <div style={{ display: "flex", flexDirection: "column-reverse", marginTop: "20px", width: "60%" }}>
                 {allTasks.map((task) => {
                   return (
                     <Task

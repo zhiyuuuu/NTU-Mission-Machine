@@ -66,7 +66,8 @@ const AddPostBox = ({ setData, curUserName }) => {
       flexDirection: "column",
       alignItems: "center",
       //background: "black",
-      padding: "10px"
+      padding: "10px",
+      width: "70%"
     }}>
       <TextArea rows={1} placeholder="任務名稱" onChange={topicChange} style={style} />
       <TextArea rows={4} placeholder="任務內容簡介" onChange={descChange} style={style} />
