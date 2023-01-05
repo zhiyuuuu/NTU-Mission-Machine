@@ -23,11 +23,12 @@ exports.SignUp = async(req, res) => {
     const name = body.newName;
     const password = body.newPswd;
     //let currTask = []
-    //console.log('backend received sign up :', body);
+    console.log('backend received sign up :', body);
 
     //check existed username
     const findExistedName = await User.find({ name: name });
-    if (findExistedName) {
+    console.log('find..', findExistedName.length);
+    if (findExistedName.length !== 0) {
         res.send({ message: "existed" })
     } else {
         const setNewUser = new User({ name, password });
