@@ -17,11 +17,13 @@ const MyTaskContent = ({ tasks, username }) => {
           padding: 24,
           minHeight: 360,
           background: colorBgContainer,
+          display: "flex",
+          justifyContent: "center"
         }}
       >
         {tasks.map((task) => {
           return (
-            <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+            <div style={{ display: "flex", flexDirection: "column-reverse", width: "60%" }}>
               <AppliedTask
                 key={task._id}
                 id={task._id}

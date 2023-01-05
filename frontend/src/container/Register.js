@@ -40,7 +40,7 @@ const Register = () => {
   return (
     <Wrapper>
       <Title />
-      <div className="container">
+      <div className="container" style={{ width: "30%" }}>
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
         <hr />
@@ -82,7 +82,7 @@ const Register = () => {
           // }}
         />
 
-        <div className="clearfix">
+        <div className="clearfix" style={{ marginTop: "20px" }}>
           <button
             type="button"
             onClick={() => navigateToSignIn()}

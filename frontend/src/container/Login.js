@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <Wrapper>
       <Title />
-      <div className="container">
+      <div className="container" style={{ width: "30%" }}>
         <label>
           <b>Username</b>
         </label>
@@ -59,6 +59,7 @@ const Login = () => {
           onChange={(e) => {
             setUsername(e.target.value);
           }}
+          style={{ marginBottom: "25px" }}
         />
 
         <label>
@@ -71,11 +72,12 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         />
-
-        <button onClick={loginTest}>Login</button>
-        <button type="submit" onClick={() => navigateToSignUp()}>
-          Register?
-        </button>
+        <div style={{ marginTop: "30px" }}>
+          <button onClick={loginTest}>Login</button>
+          <button type="submit" onClick={() => navigateToSignUp()}>
+            Register?
+          </button>
+        </div>
       </div>
     </Wrapper>
   );

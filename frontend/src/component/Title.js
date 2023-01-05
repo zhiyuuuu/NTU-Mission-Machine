@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   font-size: 40px;
   //padding: 30px;
-  margin: 1em;
+  margin: 20px;
   //padding-left: 80px;
 `;
 
