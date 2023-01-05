@@ -6,6 +6,9 @@ import { dataInit } from './upload'
 require('dotenv').config()
 const app = express()
 
+if (process.env.NODE_ENV === "development") {
+	app.use(cors());
+}
 
 // init middleware
 app.use(cors())
@@ -17,6 +20,16 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Credentials', 'true')
     next()
 })
+routes(app)
+
+if (process.env.NODE_ENV === "production") {
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, "../frontend", "build")));
+    app.get("/*", function (req, res) {
+      res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+    });
+    console.log(33)
+}
 
 const port = process.env.PORT || 4000
 const dboptions = {
@@ -38,7 +51,7 @@ mongoose.connect(
 })
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
-routes(app)
+
 app.listen(port, () => {
     console.log(`Server is up on port ${port}.`)
 })
