@@ -88,7 +88,7 @@ const EachTask = () => {
       case "closed":
         return (
           <Button type="dashed" size={"large"} danger>
-            已徵到善心人士了( ´▽｀)
+            已徵到善心人士🥰
           </Button>
         );
       case "issue":
@@ -101,7 +101,7 @@ const EachTask = () => {
           </Button>
         ) : (
           <Button type="primary" size={"large"} onClick={handleDoneClick}>
-            已完成
+            任務完成
           </Button>
         );
       default:

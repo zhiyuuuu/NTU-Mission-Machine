@@ -96,6 +96,7 @@ const AddPostBox = ({ setData, curUserName }) => {
             );
           }}
         />
+        <p>OR</p>
         <Checkbox onChange={handleCheckbox}> ASAP </Checkbox>
         <Button onClick={addTask} style={{ margin: "10px" }} type="primary" >Post</Button>
       </Space>
