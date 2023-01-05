@@ -25,13 +25,19 @@ exports.SignUp = async(req, res) => {
     //let currTask = []
     //console.log('backend received sign up :', body);
 
-    const setNewUser = new User({ name, password });
+    //check existed username
+    const findExistedName = await User.find({ name: name });
+    if (findExistedName) {
+        res.send({ message: "existed" })
+    } else {
+        const setNewUser = new User({ name, password });
 
-    try {
-        await setNewUser.save();
-        res.send({ message: "success" })
-    } catch (error) {
-        throw new Error("Sign up saving error" + error);
+        try {
+            await setNewUser.save();
+            res.send({ message: "success" })
+        } catch (error) {
+            throw new Error("Sign up saving error" + error);
+        }
     }
 }
 

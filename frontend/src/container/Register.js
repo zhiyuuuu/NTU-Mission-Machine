@@ -32,6 +32,8 @@ const Register = () => {
     //console.log('return msg: ', returnMsg);
     if (returnMsg.message === 'success') {
       navigateToSignIn();
+    } else if (returnMsg.message === "existed") {
+      alert("Username already existed Q^Q")
     } else {
       alert("Something is wrong :(");
     }
