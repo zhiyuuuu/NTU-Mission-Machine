@@ -25,6 +25,12 @@ const handleLogin = async (data) => {
   });
 };
 
+const handleCredentialLogin = async(data) => {
+  return await instance.post("/login/cred", { data }).then((res) => {
+    return res.data;
+  })
+}
+
 const handleSignUp = async (data) => {
   return await instance.post("/signup", { data }).then((res) => {
     //console.log('sign up data', res.data);
@@ -83,6 +89,7 @@ const getRecordTask = async (username) => {
 export {
   addPost,
   handleLogin,
+  handleCredentialLogin,
   handleSignUp,
   handleMyTask,
   handleMyRequest,

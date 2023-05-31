@@ -1,3 +1,4 @@
+import { get } from "mongoose";
 import User from "../models/users";
 import taskRoute from "./task";
 
@@ -8,7 +9,7 @@ exports.LoginByPassword = async(req, res) => {
     //console.log('backend received user', req.body.data);
 
     const findUser = await User.find({ name: username, password });
-    //console.log('finding user...', findUser);
+    console.log('finding user...', findUser);
 
     if (findUser.length !== 0) {
         //console.log('send to frontend');
@@ -18,10 +19,26 @@ exports.LoginByPassword = async(req, res) => {
     }
 }
 
+exports.LoginByCredential = async(req, res) => {
+    const { name } = req.body.data;
+    console.log('req body data', req.body.data);
+
+    const getCred = await User.find({ name });
+    console.log('find user cred by name', name, getCred[0].credential);
+
+    if (getCred.length !== 0) {
+        //console.log('send to frontend');
+        res.send({ message: "success", credential: getCred[0].credential })
+    } else {
+        res.send({ message: "failed" })
+    }
+}
+
 exports.SignUp = async(req, res) => {
     const body = req.body.data;
     const name = body.newName;
     const password = body.newPswd;
+    const credential = body.newCred;
     //let currTask = []
     console.log('backend received sign up :', body);
 
@@ -31,7 +48,7 @@ exports.SignUp = async(req, res) => {
     if (findExistedName.length !== 0) {
         res.send({ message: "existed" })
     } else {
-        const setNewUser = new User({ name, password });
+        const setNewUser = new User({ name, password, credential });
 
         try {
             await setNewUser.save();

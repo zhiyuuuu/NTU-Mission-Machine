@@ -5,6 +5,7 @@ const wrap = fn => ( ...args ) => fn( ...args ).catch( args[2] )
 
 function main( app ) {
     app.post( '/login', wrap( userRoute.LoginByPassword ) )
+    app.post( '/login/cred', wrap( userRoute.LoginByCredential ) )
     app.post( '/signup', wrap( userRoute.SignUp ) )
     app.post( '/', wrap( taskRoute.AddNewTask ) )
     app.get( '/tasks', wrap( taskRoute.GetAllTasks ) )
