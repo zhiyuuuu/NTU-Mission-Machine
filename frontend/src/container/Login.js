@@ -92,15 +92,46 @@ const Login = () => {
       timeout: 60000,
     };
 
-    // const credential = await navigator.credentials.get({
-    //   publicKey: publicKeyCredentialRequestOptions,
-    // });
-    // console.log("get credential", credential);
-
-    const assertion = await navigator.credentials.get({
+    const credential = await navigator.credentials.get({
       publicKey: publicKeyCredentialRequestOptions,
     });
-    console.log("assertion", assertion);
+    console.log("credential", credential);
+
+    const assertionResponse = credential.response;
+    const authenticatorData = assertionResponse.authenticatorData; // Get the authenticatorData
+    const clientDataJSON = assertionResponse.clientDataJSON; // Get the clientDataJSON
+    // const hashedDataJSON = ""
+    const signature = assertionResponse.signature; // Get the signature
+    const userHandle = assertionResponse.userHandle; // Get the userHandle
+
+    // Function to convert Uint8Array to hexadecimal string
+    function arrayBufferToHex(buffer) {
+      return Array.prototype.map
+        .call(new Uint8Array(buffer), (byte) => {
+          return ("00" + byte.toString(16)).slice(-2);
+        })
+        .join("");
+    }
+
+    // Function to compute SHA-256 hash
+    async function sha256(message) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(message);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      return arrayBufferToHex(hashBuffer);
+    }
+
+    const clientDataArray = new Uint8Array(clientDataJSON);
+    const hashedClientData = await sha256(clientDataArray);
+
+    const signedData = authenticatorData + hashedClientData;
+    const isSignatureValid = result.publicKey.verify(signature, signedData);
+
+    if (isSignatureValid) {
+      navigateToMainPage();
+    } else {
+      alert("login failed");
+    }
   };
 
   return (
