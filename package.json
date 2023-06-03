@@ -11,5 +11,8 @@
     "install:prod": "cd frontend && yarn install --freeze-lockfile && cd ../backend && yarn install --freeze-lockfile",
     "build": "cd frontend && yarn build",
     "deploy": "cd backend && yarn deploy"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1"
   }
 }
