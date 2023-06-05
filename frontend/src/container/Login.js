@@ -36,10 +36,12 @@ const Login = () => {
     //DEMO
     const [loading, setLoading] = useState(false);
     const startLoading = () => {
-        setLoading(true);
-        setTimeout(() => {
-            // setLoading(false);
-        }, 10000); // Set the duration for 1 second (1000 milliseconds)
+        // setLoading(true);
+        const buildLoading = setTimeout(() => {
+            setLoading(false);
+            // console.log('time out');
+        }, 5000); // Set the duration for 1 second (1000 milliseconds)
+        return () => clearTimeout(buildLoading);
     };
 
     // -----------------------------
@@ -49,15 +51,18 @@ const Login = () => {
     const navigateToSignUp = () => {
         navigate("/reg");
     };
-    const navigateToMainPage = () => {
-        startLoading();
-        setLoading(false);
-        console.log("spin");
-        navigate("/mainpage", {
-            state: {
-                username: username,
-            },
-        });
+
+    const navigateToMainPage = async() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            console.log("spin");
+            navigate("/mainpage", {
+                state: {
+                    username: username,
+                },
+            });
+          }, 3000);        
     };
 
     const buttonStyle = {
@@ -92,13 +97,13 @@ const Login = () => {
     };
 
     const authenticateCredential = async (name) => {
-        console.log("authenticating");
+        // console.log("authenticating");
         const { credID, pubKey } = await dbReturnCredential(name); // 等待 Promise 解析
 
         // credential type transform : object -> ArrayBuffer
         const credentialIdArray = Object.values(credID);
         const credentialIdBuffer = new Uint8Array(credentialIdArray).buffer;
-        console.log("orig id", credID, "decoded id", credentialIdBuffer);
+        // console.log("orig id", credID, "decoded id", credentialIdBuffer);
 
         // random challenge
         const challenge = new Uint8Array(32);
@@ -119,7 +124,7 @@ const Login = () => {
         const assertion = await navigator.credentials.get({
             publicKey: publicKeyCredentialRequestOptions,
         });
-        console.log("assertion", assertion);
+        // console.log("assertion", assertion);
         // PublicKeyCredential {rawId: ArrayBuffer(32), response: AuthenticatorAssertionResponse, authenticatorAttachment: 'platform', id: 'GE7A5FIbqTbgluzJ36EdcKWjlmMMcuW2UoHy8lS7po8', type: 'public-key'}
 
         const assertionResponse = assertion.response;
@@ -148,16 +153,16 @@ const Login = () => {
         // hash client data
         const clientDataArray = new Uint8Array(clientDataJSON);
         const hashedClientData = await sha256(clientDataArray);
-        console.log("client data array", clientDataJSON);
-        console.log("hased client data", hashedClientData);
+        // console.log("client data array", clientDataJSON);
+        // console.log("hased client data", hashedClientData);
 
         const encoder = new TextEncoder();
         const hashedBuffer = encoder.encode(hashedClientData).buffer; //ArrayBuffer(64)
 
         // const storedCredential = credentialIdBuffer;
         const authenticateByte = new Uint8Array(authenticatorData);
-        console.log("authenticatorData Byte", authenticateByte);
-        console.log("hashed buffer", hashedBuffer);
+        // console.log("authenticatorData Byte", authenticateByte);
+        // console.log("hashed buffer", hashedBuffer);
 
         navigateToMainPage();
     };
@@ -165,6 +170,7 @@ const Login = () => {
     return (
         <Wrapper>
             <Title />
+            {loading && <Spin />} 
             <div className="container" style={{ width: "30%" }}>
                 <label>
                     <b>Username</b>
@@ -191,7 +197,6 @@ const Login = () => {
                             >
                                 Authenticate
                             </mwc-button>
-                            <Spin spinning={loading} />
                         </div>
                         <div>
                             <mwc-button
