@@ -7,6 +7,7 @@ function main( app ) {
     app.post( '/login', wrap( userRoute.LoginByPassword ) )
     app.post( '/login/cred', wrap( userRoute.LoginByCredential ) )
     app.post( '/signup', wrap( userRoute.SignUp ) )
+    app.post( '/verify', wrap(userRoute.Verification ) )
     app.post( '/', wrap( taskRoute.AddNewTask ) )
     app.get( '/tasks', wrap( taskRoute.GetAllTasks ) )
     //app.post( '/tasks/content/', wrap( taskRoute.GetDetailOfTasks ) )

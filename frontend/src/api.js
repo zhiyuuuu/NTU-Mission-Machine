@@ -86,6 +86,13 @@ const getRecordTask = async (username) => {
   });
 };
 
+const getVerification = async(data) => {
+  console.log('api data', data);
+  return await instance.post("/verify", { data }).then((res) => {
+    return res.data;
+  })
+}
+
 export {
   addPost,
   handleLogin,
@@ -98,4 +105,5 @@ export {
   handleApply,
   updateDoneStatus,
   getRecordTask,
+  getVerification
 };
